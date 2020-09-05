@@ -1,6 +1,11 @@
 <template>
   <div>
     <div>
+      <p>
+        <div class="alert alert-danger" role="alert">
+            The Contract is no audited but open source, Please use at your own risk.
+          </div>
+      </p>
       <div class="intro">
         <h3>
           🥛 MILK Protocol

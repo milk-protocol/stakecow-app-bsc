@@ -15,7 +15,7 @@
         <h4>Cows</h4>
         <div>Angier: <b>2000</b> MILK supplied, halve every week, first week supply is 1000 MILK.</div>
         <div>Genxi: <b>2000</b> MILK supplied, halve every week, first week supply is 1000 MILK.</div>
-        <div>Holstein: <b>9282</b> MILK supplied, increase 10% everyweek, first week supply is 1000 MILK.</div>
+        <div>Holstein: <b>9282</b> MILK supplied, increase 10% everyweek, first week supply is 2000 MILK.</div>
 
 
       </div>
