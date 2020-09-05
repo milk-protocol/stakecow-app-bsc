@@ -31,7 +31,7 @@ module.exports = {
 			stakeToken: {
 				address: "",
 				decimals: 18,
-				symbol: "TBA"
+				symbol: "--"
 			},
 			yieldToken: {
 				address: "0x8E9f5173e16Ff93F81579d73A7f9723324d6B6aF",
@@ -49,7 +49,7 @@ module.exports = {
 			stakeToken: {
 				address: "",
 				decimals: 18,
-				symbol: "TBA"
+				symbol: "--"
 			},
 			yieldToken: {
 				address: "0x8E9f5173e16Ff93F81579d73A7f9723324d6B6aF",
