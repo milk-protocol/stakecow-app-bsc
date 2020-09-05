@@ -1,0 +1,30 @@
+{
+  "name": "StakeCow",
+  "version": "1.0.0",
+  "description": "Let's get milked",
+  "author": "stakecow",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.9.7",
+    "bignumber.js": "^9.0.0",
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.9.0",
+    "nuxt": "^2.0.0",
+    "vue": "^2.6.11",
+    "web3": "^1.2.6",
+    "web3-utils": "^1.2.11"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "vue-jest": "^4.0.0-0"
+  }
+}
