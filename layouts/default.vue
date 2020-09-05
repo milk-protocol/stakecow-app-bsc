@@ -57,6 +57,7 @@
       <div class="footer-body">
         <a href="https://twitter.com/StakeCow" class="link" target="_blank">Twitter</a>
         <a href="https://t.me/StakeCow" class="link" target="_blank">Telegram</a>
+        <a href="https://github.com/milk-protocol" class="link" target="_blank">GitHub</a>
       </div>
     </div>
   </div>
