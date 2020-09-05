@@ -18,7 +18,8 @@
         <div class="card cow">
           <span class="avatar">{{cow.avatar}}</span>
           <div class="card-body">
-            <h5 class="card-title">{{ cow.name }}</h5>
+            <h5 class="card-title title">{{ cow.name }}</h5>
+            <div class="desc">Likes {{ cow.stakeToken.symbol }}</div>
             <p class="card-text"></p>
             <a :href="'/cow/' + cow.id" v-if="cow.initialized" class="btn btn-block btn-success">
               Select
@@ -55,6 +56,13 @@
   }
   .cover {
     text-align: center;
+  }
+  .title {
+    margin-bottom: 0.1rem !important;
+  }
+  .desc {
+    font-size: 0.9rem;
+    color: #999;
   }
   .cover img {
     display: inline-block;

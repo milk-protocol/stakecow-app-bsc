@@ -2,22 +2,22 @@
 export default {
   mode: 'spa',
   head: {
-    title: "Cow.money, Staking Pools",
+    title: "StakeCow.com - First yield farm on Binance Smart Chain.",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: "Let's get milked" },
       { hid: 'keywords', name: 'keywords', content: 'Dapp, DeFi, Staking, Token, MILK' },
-      { name: 'twitter:title', content: 'cow.money' },
+      { name: 'twitter:title', content: 'StakeCow.com' },
       { name: 'twitter:description', content: "Let's get milked" },
-      { name: 'twitter:image', content: '/fatcow.png' },
+      { name: 'twitter:image', content: '/cow.png' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:creator', content: '@MilkProtocol' }
+      { name: 'twitter:creator', content: '@StakeCow' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'apple-touch-icon', href: '/fatcow.png' },
-      { rel: 'shortcut icon', href: '/fatcow.png' }
+      { rel: 'apple-touch-icon', href: '/cow.png' },
+      { rel: 'shortcut icon', href: '/cow.png' }
     ]
   },
   /*

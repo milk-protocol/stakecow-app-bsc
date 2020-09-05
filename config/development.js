@@ -1,7 +1,25 @@
 'use strict'
 module.exports = {
-	chainId: 97,
+	chainId: 56,
 	cows: [
+		{
+			id: 0,
+			name: "Angier",
+			avatar: "🐂",
+			desc: "Halved every week",
+			initialized: false,
+			address: "0xA789383b848BcD7c60975094AE3ba5444ED70103",
+			stakeToken: {
+				address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+				decimals: 18,
+				symbol: "WBNB"
+			},
+			yieldToken: {
+				address: "0x8E9f5173e16Ff93F81579d73A7f9723324d6B6aF",
+				decimals: 18,
+				symbol: "MILK"
+			}
+		},
 		{
 			id: 1,
 			name: "Angier",
