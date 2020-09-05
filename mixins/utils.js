@@ -1,9 +1,9 @@
 function etherscanAddr(addr) {
-  return `https://https://bscscan.com/address/${addr}`;
+  return `https://bscscan.com/address/${addr}`;
 }
 
 function etherscanTx(txid) {
-  return `https://https://bscscan.com/tx/${txid}`;
+  return `https://bscscan.com/tx/${txid}`;
 }
 
 function formatDate(str) {

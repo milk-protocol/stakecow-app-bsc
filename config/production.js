@@ -7,7 +7,7 @@ module.exports = {
 			name: "Angier",
 			avatar: "🐂",
 			desc: "Halved every week",
-			initialized: false,
+			initialized: true,
 			address: "0xA789383b848BcD7c60975094AE3ba5444ED70103",
 			stakeToken: {
 				address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
