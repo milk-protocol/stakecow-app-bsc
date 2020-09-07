@@ -35,7 +35,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/bootstrap_vue'
+    '@/plugins/bootstrap_vue',
+    '@/plugins/i18n_vue',
   ],
   /*
   ** Nuxt.js dev-modules

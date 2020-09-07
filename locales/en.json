@@ -1,0 +1,50 @@
+{
+    "navbar": {
+        "home": "Home",
+        "airdrop": "Airdrop",
+        "about": "About",
+        "change-to-bsc": "Change to BSC",
+        "install-wallet": "Install Wallet"
+    },
+    "home": {
+        "note": "The Contract is no audited but open source, Please use at your own risk.",
+        "protocol-name": "🥛 MILK Protocol",
+        "protocol-desc": "MILK Protocol is an experimental DeFi degens on Binance Smart Chain.Use at your own risk.",
+        "coming-soon": "Coming soon",
+        "select": "Select",
+        "card-desc": "Likes {symbol}"
+    },
+    "airdrop": {
+        "airdrop-plan": "Airdrop Plan",
+        "airdrop-plan-desc": " 10 MILK will be airdropped.",
+        "how-to-get": "How to get airdrop?",
+        "join": "Join the Telegram group and follow the twitter below. Each airdrop is 0.1 MILK"
+    },
+    "about": {
+        "title": "MILK Protocol",
+        "total-supply": "Total Supply: {0} MILK",
+        "total-supply-number": "{0}",
+        "desc": "MILK will be distributed in the sprit of YFI: no pre-mine, no founder shares, no VC interests - simply equal-opportunity staking distribution to attract a broad and vision-aligned community to steward the future of the protocol and token.",
+        "drop-free": "{0} MILK will be airdropped for free.",
+        "drop-free-number": "{0}",
+        "cow": "Cow",
+        "angier": "Angier: {0} MILK supplied, halve every week, first week supply is 1000 MILK.",
+        "angier-number": "{0}",
+        "genxi": "Genxi: {0} MILK supplied, halve every week, first week supply is 1000 MILK.",
+        "genxi-number": "{0}",
+        "holstein": "Holstein: {0} MILK supplied, increase 10% everyweek, first week supply is 2000 MILK.",
+        "holstein-number": "{0}",
+        "contracts": "Contracts",
+        "milk": "MILK: {0}",
+        "milk-address": "{0}",
+        "cowfactory": "CowFactory: {0}",
+        "cowfactory-address": "{0}",
+        "angier-cow": "Angier Cow: {0}",
+        "angier-cow-address": "{0}"
+    },
+    "footerbar": {
+        "twitter": "Twitter",
+        "telegram": "Telegram",
+        "github": "GitHub"
+    }
+}
