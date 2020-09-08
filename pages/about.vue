@@ -3,26 +3,58 @@
     <div>
       <div class="intro">
         <h3 class="text-center">
-          MILK Protocol
+          {{$t("about.title")}}
         </h3>
         <br>
-        <p>Total Supply: <b>13292</b> MILK</p>
         <p>
-          MILK will be distributed in the sprit of YFI: no pre-mine, no founder shares, no VC interests - simply equal-opportunity staking distribution to attract a broad and vision-aligned community to steward the future of the protocol and token.
+          <i18n path="about.total-supply" tag="label" for="about.total-supply-number">
+            <b>13292</b>
+          </i18n>
+        </p>
+        <p>
+          {{$t("about.desc")}}
         </p>
 
-        <p><b>10</b> MILK will be airdropped for free.</p>
-        <h4>Cows</h4>
-        <div>Angier: <b>2000</b> MILK supplied, halve every week, first week supply is 1000 MILK.</div>
-        <div>Genxi: <b>2000</b> MILK supplied, halve every week, first week supply is 1000 MILK.</div>
-        <div>Holstein: <b>9282</b> MILK supplied, increase 10% everyweek, first week supply is 2000 MILK.</div>
+        <p>
+          <i18n path="about.drop-free" tag="label" for="about.drop-free-number">
+            <b>10</b>
+          </i18n>
+        </p>
+        <h4>{{$t("about.cow")}}</h4>
+        <div>
+          <i18n path="about.angier" tag="label" for="about.angier-number">
+            <b>2000</b>
+          </i18n>
+        </div>
+        <div>
+          <i18n path="about.genxi" tag="label" for="about.genxi-number">
+            <b>2000</b>
+          </i18n>
+        </div>
+        <div>
+          <i18n path="about.holstein" tag="label" for="about.holstein-number">
+            <b>9282</b>
+          </i18n>
+        </div>
 
         <br>
         <br>
-        <h4>Contracts</h4>
-        <div>MILK: <a href="https://bscscan.com/address/0x8e9f5173e16ff93f81579d73a7f9723324d6b6af" target="_blank">0x8e9f5173e16ff93f81579d73a7f9723324d6b6af</a></div>
-        <div>CowFactory: <a href="https://bscscan.com/address/0x4BF38c704675a148E4ECb8142B8e505591092E97" target="_blank">0x4BF38c704675a148E4ECb8142B8e505591092E97</a></div>
-        <div>Angier Cow: <a href="https://bscscan.com/address/0xA789383b848BcD7c60975094AE3ba5444ED70103" target="_blank">0xA789383b848BcD7c60975094AE3ba5444ED70103</a></div>
+        <h4>{{$t("about.contracts")}}</h4>
+        <div>
+          <i18n path="about.milk" tag="label" for="about.milk-address">
+            <a href="https://bscscan.com/address/0x8e9f5173e16ff93f81579d73a7f9723324d6b6af" target="_blank">0x8e9f5173e16ff93f81579d73a7f9723324d6b6af</a>
+          </i18n>
+        </div>
+        <div>
+          <i18n path="about.cowfactory" tag="label" for="about.cowfactory-address">
+            <a href="https://bscscan.com/address/0x4BF38c704675a148E4ECb8142B8e505591092E97" target="_blank">0x4BF38c704675a148E4ECb8142B8e505591092E97</a>
+          </i18n>
+        </div>
+        <div>
+          <i18n path="about.angier-cow" tag="label" for="about.angier-cow-address">
+            <a href="https://bscscan.com/address/0xA789383b848BcD7c60975094AE3ba5444ED70103" target="_blank">0xA789383b848BcD7c60975094AE3ba5444ED70103</a>
+          </i18n>
+        </div>
 
       </div>
     </div>

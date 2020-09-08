@@ -1,0 +1,64 @@
+{
+    "navbar": {
+        "home": "首页",
+        "market": "市场",
+        "airdrop": "空投",
+        "about": "关于",
+        "change-to-bsc": "更换为币安智能链",
+        "install-wallet": "安装钱包"
+    },
+    "home": {
+        "note": "该合约开源但未经过审核, 请自行承担使用风险。",
+        "protocol-name": "🥛 MILK协议",
+        "protocol-desc": "MILK协议是币安智能链上的实验性DeFi程序，请自行承担使用风险",
+        "coming-soon": "即将到来",
+        "select": "选择",
+        "card-desc": "类似 {symbol}"
+    },
+    "airdrop": {
+        "airdrop-plan": "空投计划",
+        "airdrop-plan-desc": "MILK计划空投的数量为 10",
+        "how-to-get": "如何获得空投?",
+        "join": "加入官方电报群并且关注Twitter官方账号。每次空投将有0.1 MILK"
+    },
+    "about": {
+        "title": "MILK 协议",
+        "total-supply": "总供应量: {0} MILK",
+        "total-supply-number": "{0}",
+        "desc": "MILK将以YFI的名义分发: 无预挖矿, 无创始人股份, 无风险投资利益 - 简单的机会均等的股权分配，以吸引一个广泛而有远见的社区来管理协议和代币的未来。",
+        "drop-free": "将免费空投 {0} 个MILK",
+        "drop-free-number": "{0}",
+        "cow": "奶牛",
+        "angier": "Angier: 已供应 {0} MILK, 每周减半, 第一周供应量为1000 MILK。",
+        "angier-number": "{0}",
+        "genxi": "Genxi: 已供应 {0} MILK, 每周减半, 第一周供应量为1000 MILK。",
+        "genxi-number": "{0}",
+        "holstein": "Holstein: 已供应 {0} MILK, 每周增加10%，第一周供应量为2000 MILK。",
+        "holstein-number": "{0}",
+        "contracts": "合约",
+        "milk": "MILK: {0}",
+        "milk-address": "{0}",
+        "cowfactory": "牛奶厂: {0}",
+        "cowfactory-address": "{0}",
+        "angier-cow": "Angier 奶牛: {0}",
+        "angier-cow-address": "{0}"
+    },
+    "cow": {
+        "earned": "已赚取MILK",
+        "harvest": "收获",
+        "symbol-staked": "已质押{symbol}",
+        "approve-symbol": "批准{symbol}",
+        "stake": "质押",
+        "harvest-unstake": "收获 & 解押",
+        "balance": "余额: ",
+        "greater-than": "必须大于0",
+        "unstake": "解押",
+        "staking-balance": "您的质押余额: {stakingBalance} {symbol}",
+        "amount-greater-than": "数量必须大于0"
+    },
+    "footerbar": {
+        "twitter": "Twitter",
+        "telegram": "Telegram",
+        "github": "GitHub"
+    }
+}
