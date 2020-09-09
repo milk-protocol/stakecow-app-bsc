@@ -3,33 +3,33 @@
     <div>
       <p>
         <div class="alert alert-danger" role="alert">
-            The Contract is no audited but open source, Please use at your own risk.
-          </div>
+          {{$t("home.note")}}
+        </div>
       </p>
       <div class="intro">
         <h3>
-          🥛 MILK Protocol
+          {{$t("home.protocol-name")}}
         </h3>
         <p>
-          MILK Protocol is an experimental DeFi degens on Binance Smart Chain.
-          Use at your own risk.
+          {{$t("home.protocol-desc")}}
         </p>
         <p></p>
       </div>
     </div>
     <br>
     <div class="row">
-      <div class="col-6 cow" v-for="(cow, i) in cows">
+      <div class="col-6 cow" v-for="(cow, i) in cows" :key="i">
         <div class="card cow">
           <span class="avatar">{{cow.avatar}}</span>
           <div class="card-body">
             <h5 class="card-title title">{{ cow.name }}</h5>
-            <div class="desc">Likes {{ cow.stakeToken.symbol }}</div>
+            <!-- <div class="desc">{{ cow.stakeToken.symbol }}</div> -->
+            <div class="desc">{{$t("home.card-desc", { symbol: cow.stakeToken.symbol })}}</div>
             <p class="card-text"></p>
             <a :href="'/cow/' + cow.id" v-if="cow.initialized" class="btn btn-block btn-success">
-              Select
+              {{$t("home.select")}}
             </a>
-            <a href="#" v-else class="btn btn-secondary btn-block">Coming soon</a>
+            <a href="#" v-else class="btn btn-secondary btn-block">{{$t("home.coming-soon")}}</a>
           </div>
         </div>
       </div>

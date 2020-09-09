@@ -13,9 +13,9 @@
         <div class="card text-center">
           <div class="card-body">
             <h5 class="card-title">{{ rewards }}</h5>
-            <p class="card-text">MILK earned</p>
+            <p class="card-text">{{$t('cow.earned')}}</p>
             <b-button block @click="onClaim" variant="success">
-             Harvest
+             {{$t('cow.harvest')}}
             </b-button>
           </div>
         </div>
@@ -24,12 +24,12 @@
         <div class="card text-center">
           <div class="card-body">
             <h5 class="card-title">{{ stakingBalance }} </h5>
-            <p class="card-text">{{ cow.stakeToken.symbol }} staked</p>
+            <p class="card-text">{{$t('cow.symbol-staked', {symbol: cow.stakeToken.symbol})}}</p>
             <b-button block @click="onApprove" v-if="stakeAllowance.lte(toBigNumber(stakeAmount))" variant="danger">
-             Approve {{ cow.stakeToken.symbol }}
+             {{$t('cow.approve-symbol', {symbol: cow.stakeToken.symbol})}}
             </b-button>
             <b-button block v-else @click="$bvModal.show('stake-modal')" variant="primary">
-              Stake
+              {{$t('cow.stake')}}
             </b-button>
           </div>
         </div>
@@ -39,7 +39,7 @@
     <div class="row">
       <div class="col-12 text-center">
         <b-button @click="onExit" variant="primary">
-          Harvest & Unstake
+          {{$t('cow.harvest-unstake')}}
         </b-button>
       </div>
     </div>
@@ -47,10 +47,10 @@
 
     <b-modal id="stake-modal" hide-footer size="md">
       <template v-slot:modal-title="{ close }">
-        <b>Stake</b>
+        <b>{{$t('cow.stake')}}</b>
       </template>
       <b-form>
-        <div>Balance: <b class="balance" @click="fillStakeAmount(stakeWalletBalance)">{{ stakeWalletBalance }}</b> {{ cow.stakeToken.symbol}}</div>
+        <div>{{$t('cow.balance')}}<b class="balance" @click="fillStakeAmount(stakeWalletBalance)">{{ stakeWalletBalance }}</b> {{ cow.stakeToken.symbol}}</div>
         <b-form-group id="input-group-1" label="" label-for="input-1">
           <b-form-input
             id="input-1"
@@ -60,11 +60,11 @@
             required
           ></b-form-input>
           <b-form-invalid-feedback :state="validationAmount(stakeAmount)">
-            Must be greater than 0
+            {{$t('cow.greater-than')}}
           </b-form-invalid-feedback>
         </b-form-group>
 
-        <b-button block @click="onStake" variant="success" v-if="stakeAllowance.gte(toBigNumber(stakeAmount))" :disabled="!validationAmount(stakeAmount) || txStatus == 'pending' || toBigNumber(stakeWalletBalance).lte(0)" >Stake</b-button>
+        <b-button block @click="onStake" variant="success" v-if="stakeAllowance.gte(toBigNumber(stakeAmount))" :disabled="!validationAmount(stakeAmount) || txStatus == 'pending' || toBigNumber(stakeWalletBalance).lte(0)" >{{$t('cow.stake')}}</b-button>
       </b-form>
       <br>
       <br>
@@ -72,10 +72,10 @@
 
     <b-modal id="unstake-modal" hide-footer size="md">
       <template v-slot:modal-title="{ close }">
-        <b>Unstake</b>
+        <b>{{$t('cow.unstake')}}</b>
       </template>
       <b-form>
-        <div>Your staking balance: {{stakingBalance}} {{ cow.stakeToken.symbol }}</div>
+        <div>{{$t('cow.staking-balance', {stakingBalance: stakingBalance, symbol: cow.stakeToken.symbol})}}</div>
         <b-form-group id="input-group-1" label="" label-for="input-1">
           <b-form-input
             id="input-1"
@@ -85,10 +85,10 @@
             required
           ></b-form-input>
           <b-form-invalid-feedback :state="validationAmount(unstakeAmount)">
-            Amount must be great than 0
+            {{$t('cow.amount-greater-than')}}
           </b-form-invalid-feedback>
         </b-form-group>
-        <b-button block @click="onUnstake" variant="success" :disabled="!validationAmount(unstakeAmount) || txStatus == 'pending'">Unstake</b-button>
+        <b-button block @click="onUnstake" variant="success" :disabled="!validationAmount(unstakeAmount) || txStatus == 'pending'">{{$t('cow.unstake')}}</b-button>
       </b-form>
       <br>
       <br>
@@ -128,7 +128,6 @@
       return {
         cow: cow,
         stakeAddress: '',
-        connectedAccount: '',
         txid: '',
         show: true,
         submitDisabled: false,
@@ -176,7 +175,7 @@
 
       onApprove() {
         if(!this.cowLoaded()) return;
-        this.stakeToken.approveMax(this.connectedAccount, this.cow.address, (err, txHash) => {
+        this.stakeToken.approveMax(this.$store.state.connectedAccount, this.cow.address, (err, txHash) => {
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -196,7 +195,7 @@
         let amount = parseFloat(this.stakeAmount);
         if(amount <= 0) return;
         this.txStatus = 'pending';
-        this.cowContract.stake(this.connectedAccount, amount, (err, txHash)=>{
+        this.cowContract.stake(this.$store.state.connectedAccount, amount, (err, txHash)=>{
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -216,7 +215,7 @@
         let amount = parseFloat(this.unstakeAmount);
         if(amount <= 0) return;
         this.txStatus = 'pending';
-        this.cowContract.withdraw(this.connectedAccount, amount, (err, txHash) => {
+        this.cowContract.withdraw(this.$store.state.connectedAccount, amount, (err, txHash) => {
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -237,7 +236,7 @@
         if(!this.cowLoaded()) return;
         if(!confirm("Are you sure to exit?")) return;
         this.exitDisabled = true;
-        this.cowContract.exit(this.connectedAccount, (err, txHash) => {
+        this.cowContract.exit(this.$store.state.connectedAccount, (err, txHash) => {
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -256,7 +255,7 @@
       onClaim() {
         if(!this.cowLoaded()) return;
         this.claimDisabled = true;
-        this.cowContract.getReward(this.connectedAccount, (err, txHash) => {
+        this.cowContract.getReward(this.$store.state.connectedAccount, (err, txHash) => {
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -277,39 +276,25 @@
       fillStakeAmount(v) {
         this.stakeAmount = v.toString();
       },
-
-      async onConnect() {
-        
-        if(window.ethereum) {
-          window.ethereum.on('accountsChanged', function (accounts) {
-            this.connectedAccount = accounts[0];
-            this.chainId = web3.toBigNumber(window.ethereum.chainId).toNumber();
-          });
-          if(!window.web3.eth.defaultAccount) {
-            await window.ethereum.enable();
-          }
-          this.connectedAccount = window.connectedAccount = window.web3.eth.defaultAccount;
-          this.chainId = web3.toBigNumber(window.ethereum.chainId).toNumber();
-        }
-      },
       async update() {
-        this.stakeWalletBalance = await this.stakeToken.balanceOf(this.connectedAccount);
-        this.stakingBalance = await this.cowContract.balanceOf(this.connectedAccount);
-        this.rewards = await this.cowContract.earned(this.connectedAccount);
-        this.stakeAllowance = await this.stakeToken.allowance(this.connectedAccount, this.cow.address);
+        this.stakeWalletBalance = await this.stakeToken.balanceOf(this.$store.state.connectedAccount);
+        this.stakingBalance = await this.cowContract.balanceOf(this.$store.state.connectedAccount);
+        this.rewards = await this.cowContract.earned(this.$store.state.connectedAccount);
+        this.stakeAllowance = await this.stakeToken.allowance(this.$store.state.connectedAccount, this.cow.address);
       }
     },
     async mounted() {
-      await this.onConnect();
+      await this.$onConnect();
       let cow = new Cow(this.cow.address, this.cow.stakeToken, this.cow.yieldToken);
+
       let stakeToken = new Erc20(this.cow.stakeToken.address);
       let yieldToken = new Erc20(this.cow.yieldToken.address);
 
       if(this.cow.initialized) {
-        this.stakeWalletBalance = await stakeToken.balanceOf(this.connectedAccount);
-        this.stakingBalance =  await cow.balanceOf(this.connectedAccount)
-        this.rewards = await cow.earned(this.connectedAccount);
-        let stakeAllowance =  await stakeToken.allowance(this.connectedAccount, this.cow.address);
+        this.stakeWalletBalance = await stakeToken.balanceOf(this.$store.state.connectedAccount);
+        this.stakingBalance =  await cow.balanceOf(this.$store.state.connectedAccount)
+        this.rewards = await cow.earned(this.$store.state.connectedAccount);
+        let stakeAllowance =  await stakeToken.allowance(this.$store.state.connectedAccount, this.cow.address);
         this.cowContract = cow;
         this.stakeToken = stakeToken;
         this.yieldToken = yieldToken;

@@ -9,35 +9,44 @@
             <img src="~/static/cow.svg" class="logo"/>
           </router-link>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center nav-container">
           <b-nav class="justify-content-center">
             <b-nav-item>
               <router-link to="/">
-                Home
+                {{$t("navbar.home")}}
+              </router-link>
+            </b-nav-item> 
+            <b-nav-item>
+              <router-link to="/market">
+                {{$t("navbar.market")}}
               </router-link>
             </b-nav-item> 
             <b-nav-item>
               <router-link to="/airdrop">
-                Airdrop
+                {{$t("navbar.airdrop")}}
               </router-link>
             </b-nav-item> 
             <b-nav-item>
               <router-link to="/about">
-                About
+                {{$t("navbar.about")}}
               </router-link>
             </b-nav-item> 
           </b-nav>
         </div>
-        <div class="col-md-4 col-sm-5 text-right nav-link">
+        <div class="col-md-4 col-sm-5 text-right nav-link right">
           <div class="wallet" v-if="walletInstalled">
             <span v-if="checkChainId()">
-              <span class="addr" v-if="connectedAccount">
+              <span class="addr" v-if="$store.state.connectedAccount">
               <b-icon-wallet></b-icon-wallet>
-              {{ shortAddr(connectedAccount) }}</span>
+              {{ shortAddr($store.state.connectedAccount) }}</span>
             </span>
-            <a href="https://docs.binance.org/smart-chain/wallet/metamask.html" target="_blank" v-else>Change to BSC</a>
+            <a href="https://docs.binance.org/smart-chain/wallet/metamask.html" target="_blank" v-else>{{$t("navbar.change-to-bsc")}}</a>
           </div>
-          <div v-else><a href="https://metamask.io/" target="_blank">Install Wallet</a></div>
+          <div v-else><a href="https://metamask.io/" target="_blank">{{$t("navbar.install-wallet")}}</a></div>
+          <b-dropdown class="dropdown" :text="currentLang == 'en' ? language.en : language.zh_CN">
+              <b-dropdown-item @click="checkLanguage('en')" :active="currentLang == 'en'">{{language.en}}</b-dropdown-item>
+              <b-dropdown-item @click="checkLanguage('zh_CN')" :active="currentLang == 'zh_CN'">{{language.zh_CN}}</b-dropdown-item>
+          </b-dropdown>
         </div>
       </div>
       </div>
@@ -55,9 +64,9 @@
 
     <div class="footer">
       <div class="footer-body">
-        <a href="https://twitter.com/StakeCow" class="link" target="_blank">Twitter</a>
-        <a href="https://t.me/StakeCow" class="link" target="_blank">Telegram</a>
-        <a href="https://github.com/milk-protocol" class="link" target="_blank">GitHub</a>
+        <a href="https://twitter.com/StakeCow" class="link" target="_blank">{{$t("footerbar.twitter")}}</a>
+        <a href="https://t.me/StakeCow" class="link" target="_blank">{{$t("footerbar.telegram")}}</a>
+        <a href="https://github.com/milk-protocol" class="link" target="_blank">{{$t("footerbar.github")}}</a>
       </div>
     </div>
   </div>
@@ -69,38 +78,35 @@
   export default {
     data () {
       return {
-        connectedAccount: '',
-        chainId: 0,
         walletInstalled: true,
+        language: {
+          en: "English",
+          zh_CN: "简体中文"
+        }
+      }
+    },
+    computed: {
+      currentLang(){
+        return  this.$store.state.locale
       }
     },
     methods: {
+      checkLanguage(lang){
+        this.$i18n.locale = lang
+        this.$store.commit('updateLang', lang)
+      },
       checkChainId() {
-        return config.chainId == this.chainId
+        return config.chainId == this.$store.state.chainId
       },
       shortAddr(addr) {
         return utils.shortAddr(addr)
       },
-      async onConnect() {
-        this.walletInstalled = !!window.ethereum;
-        if(window.ethereum) {
-          window.ethereum.on('accountsChanged', function (accounts) {
-            this.connectedAccount = accounts[0];
-            this.chainId = web3.toBigNumber(window.ethereum.chainId).toNumber();
-          });
-          if(!window.web3.eth.defaultAccount) {
-            await window.ethereum.enable();
-          }
-          this.connectedAccount = window.connectedAccount = window.web3.eth.defaultAccount;
-          this.chainId = web3.toBigNumber(window.ethereum.chainId).toNumber();
-        }
-      },
       async onUnlock() {
-        await this.onConnect()
+        await this.$onConnect()
       }
     },
     async mounted() {
-      await this.onConnect();
+      await this.$onConnect();
     }
   }
 </script>
@@ -117,8 +123,13 @@
     color: #fff;
     font-size: 1.1rem;
   }
+  .nav-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .wallet {
-    float: right;
+    /* float: right; */
   }
 
   .logo {
@@ -147,9 +158,41 @@
   .link {
     margin: 0 1rem;
   }
+  .right{
+    display:flex;
+    justify-content:flex-end;
+    align-items: center;
+  }
   .wallet {
     font-weight: bold;
     cursor: pointer;
+  }
+
+  .dropdown .btn.dropdown-toggle{
+    /* line-height:1; */
+    margin-left: 20px;
+    padding: 0;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+  }
+  .dropdown .btn, .dropdown .btn.dropdown-toggle:active, .dropdown .btn.dropdown-toggle:hover{
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .dropdown-item.active{
+    color: #28a745;
+    background-color: transparent;
+  }
+  .dropdown-item:active{
+    color: black;
+    background-color: transparent;
+  }
+  .dropdown-menu a{
+    color: #16181b;
   }
 
 </style>

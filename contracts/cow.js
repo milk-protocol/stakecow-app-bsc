@@ -14,7 +14,7 @@ export class Cow {
 		this.contract = new this.web3.eth.Contract(COW_ABI, address);
 		this.stakeToken = stakeToken;
 		this.yieldToken = yieldToken;
-		this.defaultGasPrice = 10000000000;
+		this.defaultGasPrice = 20000000000;
 		this.stakePrecision = BigNumber(10).pow(BigNumber(this.stakeToken.decimals))
 		this.yieldPrecision = BigNumber(10).pow(BigNumber(this.yieldToken.decimals))
 	}

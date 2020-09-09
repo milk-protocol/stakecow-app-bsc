@@ -3,16 +3,16 @@
     <div>
       <div class="intro">
         <h3 class="text-center">
-          Airdrop Plan
+          {{$t("airdrop.airdrop-plan")}}
         </h3>
         <br>
-        <p> 10 MILK will be airdropped.</p>
-        <div>How to get airdrop?</div>
-        <div>Join the Telegram group and follow the twitter below. Each airdrop is 0.1 MILK</div>
+        <p>{{$t("airdrop.airdrop-plan-desc")}}</p>
+        <div>{{$t("airdrop.how-to-get")}}</div>
+        <div>{{$t("airdrop.join")}}</div>
         <br>
         <p>
-          <a href="https://twitter.com/StakeCow" class="link" target="_blank">Twitter</a>
-          <a href="https://t.me/StakeCow" class="link" target="_blank">Telegram</a>
+          <a href="https://twitter.com/StakeCow" class="link" target="_blank">{{$t("footerbar.twitter")}}</a>
+          <a href="https://t.me/StakeCow" class="link" target="_blank">{{$t("footerbar.telegram")}}</a>
         </p>
       </div>
     </div>
