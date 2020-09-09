@@ -20,6 +20,10 @@ export default {
       { rel: 'shortcut icon', href: '/cow.png' }
     ]
   },
+
+  router: {
+    routeNameSplitter: '/'
+  },
   /*
   ** Customize the progress-bar color
   */
