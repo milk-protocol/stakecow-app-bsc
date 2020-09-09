@@ -4,7 +4,7 @@ import VueI18n from 'vue-i18n'
 Vue.use(VueI18n)
 
 export default ({ app, store }) => {
-  let language = window.localStorage.language ? JSON.parse(window.localStorage.language) : (navigator.browserLanguage ? navigator.browserLanguage : navigator.language);
+  let language = window.navigator.language;
   if (language === 'en-US') {
     language = 'en'
   } else if (language === 'zh-CN' || language === 'zh-cn') {

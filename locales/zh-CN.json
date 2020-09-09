@@ -57,7 +57,7 @@
         "amount-greater-than": "数量必须大于0"
     },
     "market": {
-        "tip": "先做小额测试，再做大额操作。",
+        "tip": "提醒：先做小额测试，再做大额操作。",
         "from": "从 {symbol}",
         "balance": "余额: {balance}",
         "greather-than": "必须大于0",

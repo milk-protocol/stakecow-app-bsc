@@ -22,11 +22,6 @@
               </router-link>
             </b-nav-item> 
             <b-nav-item>
-              <router-link to="/airdrop">
-                {{$t("navbar.airdrop")}}
-              </router-link>
-            </b-nav-item> 
-            <b-nav-item>
               <router-link to="/about">
                 {{$t("navbar.about")}}
               </router-link>
@@ -67,6 +62,9 @@
         <a href="https://twitter.com/StakeCow" class="link" target="_blank">{{$t("footerbar.twitter")}}</a>
         <a href="https://t.me/StakeCow" class="link" target="_blank">{{$t("footerbar.telegram")}}</a>
         <a href="https://github.com/milk-protocol" class="link" target="_blank">{{$t("footerbar.github")}}</a>
+        <router-link to="/airdrop" class="link">
+          {{$t("navbar.airdrop")}}
+        </router-link>
       </div>
     </div>
   </div>

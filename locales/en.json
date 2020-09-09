@@ -1,7 +1,7 @@
 {
     "navbar": {
         "home": "Home",
-        "market": "WBNB Exchange",
+        "market": "WBNB",
         "airdrop": "Airdrop",
         "about": "About",
         "change-to-bsc": "Change to BSC",
@@ -64,7 +64,7 @@
         "to": "To {symbol}",
         "swap": "Swap {symbol}",
         "amount": "Amount",
-        "title-swap": "Swap",
+        "title-swap": "Exchange",
         "title-transaction": "Transaction",
         "copied": "Copied",
         "success": "Success",

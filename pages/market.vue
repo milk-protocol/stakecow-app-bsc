@@ -120,6 +120,18 @@ export default {
                         })
                     }else {
                         this.transactions.push(result)
+                        let self = this;
+                        let timer = setInterval(()=>{
+                          window.web3.eth.getTransactionReceipt(result, (err, receipt)=>{
+                            if(receipt) {
+                              self.getBnbBalance();
+                              self.getWbnbBalance().then(data => {
+                                self.wbnb_balance = data
+                              });
+                              clearInterval(timer);
+                            }
+                          })
+                        }, 2000)
                     }
                 })
             }
