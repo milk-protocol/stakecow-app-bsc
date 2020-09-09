@@ -285,7 +285,6 @@
     async mounted() {
       await this.$onConnect();
       let cow = new Cow(this.cow.address, this.cow.stakeToken, this.cow.yieldToken);
-
       let stakeToken = new Erc20(this.cow.stakeToken.address);
       let yieldToken = new Erc20(this.cow.yieldToken.address);
 

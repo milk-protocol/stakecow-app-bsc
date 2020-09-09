@@ -7,7 +7,7 @@ const WBNB_ABI = require('./abis/wbnb.json');
 
 export class Wbnb {
 	constructor(address, symbol, decimals) {
-		this.web3 = new Web3(Web3.givenProvider);
+		this.web3 = new Web3(window.ethereum);
 		this.address = address;
 		this.contract = new this.web3.eth.Contract(WBNB_ABI, address)
 		this.decimals = decimals;
