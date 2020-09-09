@@ -1,7 +1,7 @@
 {
     "navbar": {
         "home": "Home",
-        "market": "Market",
+        "market": "Swap",
         "airdrop": "Airdrop",
         "about": "About",
         "change-to-bsc": "Change to BSC",
@@ -55,6 +55,19 @@
         "unstake": "Unstake",
         "staking-balance": "Your staking balance: {stakingBalance} {symbol}",
         "amount-greater-than": "Amount must be great than 0"
+    },
+    "market": {
+        "from": "From {symbol}",
+        "balance": "Balance: {balance}",
+        "greather-than": "Must be greater than 0",
+        "to": "To {symbol}",
+        "swap": "Swap {symbol}",
+        "amount": "Amount",
+        "title-swap": "Swap",
+        "title-transaction": "Transaction",
+        "copied": "Copied",
+        "success": "Success",
+        "error": "Failed"
     },
     "footerbar": {
         "twitter": "Twitter",

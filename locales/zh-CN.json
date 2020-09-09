@@ -1,7 +1,7 @@
 {
     "navbar": {
         "home": "首页",
-        "market": "市场",
+        "market": "兑换",
         "airdrop": "空投",
         "about": "关于",
         "change-to-bsc": "更换为币安智能链",
@@ -38,7 +38,7 @@
         "contracts": "合约",
         "milk": "MILK: {0}",
         "milk-address": "{0}",
-        "cowfactory": "牛奶厂: {0}",
+        "cowfactory": "农场: {0}",
         "cowfactory-address": "{0}",
         "angier-cow": "Angier 奶牛: {0}",
         "angier-cow-address": "{0}"
@@ -55,6 +55,19 @@
         "unstake": "解押",
         "staking-balance": "您的质押余额: {stakingBalance} {symbol}",
         "amount-greater-than": "数量必须大于0"
+    },
+    "market": {
+        "from": "从 {symbol}",
+        "balance": "余额: {balance}",
+        "greather-than": "必须大于0",
+        "to": "到 {symbol}",
+        "swap": "兑换为 {symbol}",
+        "amount": "数量",
+        "title-swap": "兑换",
+        "title-transaction": "交易",
+        "copied": "已复制",
+        "success": "成功",
+        "error": "Failed"
     },
     "footerbar": {
         "twitter": "Twitter",

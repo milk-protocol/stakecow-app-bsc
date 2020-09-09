@@ -1,16 +1,16 @@
-export default (context, inject) => {
+export default ({ store }, inject) => {
     inject('onConnect', async () => {
         if(window.ethereum) {
             window.ethereum.on('accountsChanged', function (accounts) {
-                inject('connectedAccount', accounts[0]);
-                inject('chainId', web3.toBigNumber(window.ethereum.chainId).toNumber());
+                store.commit('updateConnectedAccount', accounts[0]);
+                store.commit('updateChainId', web3.toBigNumber(window.ethereum.chainId).toNumber());
             });
             if(!window.web3.eth.defaultAccount) {
                 await window.ethereum.enable();
             }
             window.connectedAccount = window.web3.eth.defaultAccount;
-            inject('connectedAccount', window.connectedAccount);
-            inject('chainId', web3.toBigNumber(window.ethereum.chainId).toNumber());
+            store.commit('updateConnectedAccount', window.connectedAccount);
+            store.commit('updateChainId', web3.toBigNumber(window.ethereum.chainId).toNumber());
         }
     })
 }

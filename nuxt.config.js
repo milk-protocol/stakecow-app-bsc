@@ -38,6 +38,7 @@ export default {
     '@/plugins/bootstrap_vue',
     '@/plugins/i18n_vue',
     '@/plugins/web3_utils',
+    '@/plugins/copy_utils',
   ],
   /*
   ** Nuxt.js dev-modules

@@ -36,9 +36,9 @@
         <div class="col-md-4 col-sm-5 text-right nav-link right">
           <div class="wallet" v-if="walletInstalled">
             <span v-if="checkChainId()">
-              <span class="addr" v-if="$connectedAccount">
+              <span class="addr" v-if="$store.state.connectedAccount">
               <b-icon-wallet></b-icon-wallet>
-              {{ shortAddr($connectedAccount) }}</span>
+              {{ shortAddr($store.state.connectedAccount) }}</span>
             </span>
             <a href="https://docs.binance.org/smart-chain/wallet/metamask.html" target="_blank" v-else>{{$t("navbar.change-to-bsc")}}</a>
           </div>
@@ -96,7 +96,7 @@
         this.$store.commit('updateLang', lang)
       },
       checkChainId() {
-        return config.chainId == this.$chainId
+        return config.chainId == this.$store.state.chainId
       },
       shortAddr(addr) {
         return utils.shortAddr(addr)

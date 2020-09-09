@@ -1,6 +1,6 @@
 'use strict'
 module.exports = {
-	chainId: 56,
+	chainId: 97,
 	cows: [
 		{
 			id: 0,
@@ -76,5 +76,12 @@ module.exports = {
 		// 		symbol: "MILK"
 		// 	}
 		// }
+	],
+	tokens: [
+		{
+			symbol: "bnb",
+			address: "0xae13d989dac2f0debff460ac112a837c89baa7cd",
+			decimal: 18
+		}
 	]
 }

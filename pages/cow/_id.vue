@@ -175,7 +175,7 @@
 
       onApprove() {
         if(!this.cowLoaded()) return;
-        this.stakeToken.approveMax(this.$connectedAccount, this.cow.address, (err, txHash) => {
+        this.stakeToken.approveMax(this.$store.state.connectedAccount, this.cow.address, (err, txHash) => {
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -195,7 +195,7 @@
         let amount = parseFloat(this.stakeAmount);
         if(amount <= 0) return;
         this.txStatus = 'pending';
-        this.cowContract.stake(this.$connectedAccount, amount, (err, txHash)=>{
+        this.cowContract.stake(this.$store.state.connectedAccount, amount, (err, txHash)=>{
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -215,7 +215,7 @@
         let amount = parseFloat(this.unstakeAmount);
         if(amount <= 0) return;
         this.txStatus = 'pending';
-        this.cowContract.withdraw(this.$connectedAccount, amount, (err, txHash) => {
+        this.cowContract.withdraw(this.$store.state.connectedAccount, amount, (err, txHash) => {
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -236,7 +236,7 @@
         if(!this.cowLoaded()) return;
         if(!confirm("Are you sure to exit?")) return;
         this.exitDisabled = true;
-        this.cowContract.exit(this.$connectedAccount, (err, txHash) => {
+        this.cowContract.exit(this.$store.state.connectedAccount, (err, txHash) => {
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -255,7 +255,7 @@
       onClaim() {
         if(!this.cowLoaded()) return;
         this.claimDisabled = true;
-        this.cowContract.getReward(this.$connectedAccount, (err, txHash) => {
+        this.cowContract.getReward(this.$store.state.connectedAccount, (err, txHash) => {
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -277,24 +277,24 @@
         this.stakeAmount = v.toString();
       },
       async update() {
-        this.stakeWalletBalance = await this.stakeToken.balanceOf(this.$connectedAccount);
-        this.stakingBalance = await this.cowContract.balanceOf(this.$connectedAccount);
-        this.rewards = await this.cowContract.earned(this.$connectedAccount);
-        this.stakeAllowance = await this.stakeToken.allowance(this.$connectedAccount, this.cow.address);
+        this.stakeWalletBalance = await this.stakeToken.balanceOf(this.$store.state.connectedAccount);
+        this.stakingBalance = await this.cowContract.balanceOf(this.$store.state.connectedAccount);
+        this.rewards = await this.cowContract.earned(this.$store.state.connectedAccount);
+        this.stakeAllowance = await this.stakeToken.allowance(this.$store.state.connectedAccount, this.cow.address);
       }
     },
     async mounted() {
       await this.$onConnect();
       let cow = new Cow(this.cow.address, this.cow.stakeToken, this.cow.yieldToken);
-      debugger
+
       let stakeToken = new Erc20(this.cow.stakeToken.address);
       let yieldToken = new Erc20(this.cow.yieldToken.address);
 
       if(this.cow.initialized) {
-        this.stakeWalletBalance = await stakeToken.balanceOf(this.$connectedAccount);
-        this.stakingBalance =  await cow.balanceOf(this.$connectedAccount)
-        this.rewards = await cow.earned(this.$connectedAccount);
-        let stakeAllowance =  await stakeToken.allowance(this.$connectedAccount, this.cow.address);
+        this.stakeWalletBalance = await stakeToken.balanceOf(this.$store.state.connectedAccount);
+        this.stakingBalance =  await cow.balanceOf(this.$store.state.connectedAccount)
+        this.rewards = await cow.earned(this.$store.state.connectedAccount);
+        let stakeAllowance =  await stakeToken.allowance(this.$store.state.connectedAccount, this.cow.address);
         this.cowContract = cow;
         this.stakeToken = stakeToken;
         this.yieldToken = yieldToken;
