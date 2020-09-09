@@ -3,7 +3,7 @@ module.exports = {
 	chainId: 56,
 	cows: [
 		{
-			id: 0,
+			id: 1,
 			name: "Angier",
 			avatar: "🐂",
 			desc: "Halved every week",
@@ -21,7 +21,7 @@ module.exports = {
 			}
 		},
 		{
-			id: 1,
+			id: 2,
 			name: "Angier",
 			avatar: "🐂",
 			desc: "Halved every week",
@@ -40,7 +40,7 @@ module.exports = {
 			}
 		},
 		{
-			id: 2,
+			id: 3,
 			name: "Genxi",
 			avatar: "🐃",
 			desc: "Halved every week",
