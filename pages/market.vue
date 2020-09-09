@@ -169,13 +169,6 @@ export default {
                     }
                 })
             }
-        },
-        copy(address){
-            this.$copy(address);
-            this.$bvToast.toast(this.$t('market.copied'), {
-                title: this.$t('market.success'),
-                solid: true
-            })
         }
     },
     created(){
