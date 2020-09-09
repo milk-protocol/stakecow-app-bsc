@@ -1,7 +1,7 @@
 {
     "navbar": {
         "home": "Home",
-        "market": "Swap",
+        "market": "WBNB Exchange",
         "airdrop": "Airdrop",
         "about": "About",
         "change-to-bsc": "Change to BSC",
@@ -57,6 +57,7 @@
         "amount-greater-than": "Amount must be great than 0"
     },
     "market": {
+        "tip": "Do a small amount test first, and then do a large amount operation.",
         "from": "From {symbol}",
         "balance": "Balance: {balance}",
         "greather-than": "Must be greater than 0",

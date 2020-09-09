@@ -1,5 +1,8 @@
 <template>
     <div class="market">
+
+        <div class="alert alert-danger">{{$t('market.tip')}}</div>
+
         <h1>{{$t('market.title-swap')}}</h1>
         <div class="form">
             <div class="input-body top">
@@ -34,7 +37,9 @@
         </div>
         <h1 v-if="transactions.length > 0">{{$t('market.title-transaction')}}</h1>
         <div class="transaction" v-if="transactions.length > 0">
-            <div class="address-item" v-for="(v, i) in transactions" :key="i" @click="copy(v)">{{v}}</div>
+            <div class="address-item" v-for="(v, i) in transactions" :key="i">
+                <a :href="etherscanTx(v)" target="_blank"> {{v}}</a>
+            </div>
         </div>
     </div>
 </template>
@@ -42,6 +47,7 @@
 import { BigNumber } from 'bignumber.js'
 import { Cow, Erc20, Wbnb } from '~/contracts'
 import { toBN } from 'web3-utils'
+import utils from '~/mixins/utils'
 
 import config from '@/config/index.js'
 export default {
@@ -86,6 +92,9 @@ export default {
         }
     },
     methods: {
+        etherscanTx(tx) {
+            return utils.etherscanTx(tx)
+        },
         getBnbBalance(){
             if(this.erc20) {
                 window.web3.eth.getBalance(this.$store.state.connectedAccount, "latest", (err, data) => {
@@ -125,15 +134,26 @@ export default {
                     gasPrice: toBN(20000000000),
                     gas: 70000
                 }
-                let s = window.web3.eth.sendTransaction(obj, (err, result) => {
+                window.web3.eth.sendTransaction(obj, (err, result) => {
                     if(err) {
                         this.$bvToast.toast(error, {
                             title: this.$t('market.error'),
                             solid: true
                         })
                     }else {
-                        console.log(result)
-                        this.transactions.push(result)
+                        this.transactions.push(result);
+                        let self = this;
+                        let timer = setInterval(()=>{
+                          window.web3.eth.getTransactionReceipt(result, (err, receipt)=>{
+                            if(receipt) {
+                              self.getBnbBalance();
+                              self.getWbnbBalance().then(data => {
+                                self.wbnb_balance = data
+                              });
+                              clearInterval(timer);
+                            }
+                          })
+                        }, 2000)
                     }
                 })
             }
@@ -156,7 +176,6 @@ export default {
 </script>
 <style scoped>
     .market{
-        padding-top: 10%;
         display:flex;
         flex-direction: column;
         align-items: center;

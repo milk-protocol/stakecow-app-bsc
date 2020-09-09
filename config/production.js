@@ -57,5 +57,12 @@ module.exports = {
 				symbol: "MILK"
 			}
 		}
+	],
+	tokens: [
+		{
+			symbol: "bnb",
+			address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+			decimal: 18
+		}
 	]
 }

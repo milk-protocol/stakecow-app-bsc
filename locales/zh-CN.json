@@ -1,7 +1,7 @@
 {
     "navbar": {
         "home": "首页",
-        "market": "兑换",
+        "market": "WBNB兑换",
         "airdrop": "空投",
         "about": "关于",
         "change-to-bsc": "更换为币安智能链",
@@ -13,7 +13,7 @@
         "protocol-desc": "MILK协议是币安智能链上的实验性DeFi程序，请自行承担使用风险",
         "coming-soon": "即将到来",
         "select": "选择",
-        "card-desc": "类似 {symbol}"
+        "card-desc": "喜欢 {symbol}"
     },
     "airdrop": {
         "airdrop-plan": "空投计划",
@@ -57,6 +57,7 @@
         "amount-greater-than": "数量必须大于0"
     },
     "market": {
+        "tip": "先做小额测试，再做大额操作。",
         "from": "从 {symbol}",
         "balance": "余额: {balance}",
         "greather-than": "必须大于0",

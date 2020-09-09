@@ -105,7 +105,6 @@
       </template>
 
       <div class="tx-hash">
-        
         <div><a :href="etherscanTx(txHash)" target="_blank">{{ txHash }}</a></div>
       </div>
     </b-toast>
