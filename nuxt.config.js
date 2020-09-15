@@ -2,7 +2,7 @@
 export default {
   mode: 'spa',
   head: {
-    title: "StakeCow.com - First yield farm on Binance Smart Chain.",
+    title: "First yield farm on Binance Smart Chain.",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

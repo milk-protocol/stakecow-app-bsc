@@ -5,8 +5,6 @@
         <span class="avatar">{{cow.avatar}}</span>
         <div class="name">{{cow.name}}</div>
         <div class="desc">{{cow.desc}}</div>
-        <br>
-        <div>{{$t('cow.total')}} <b>{{ stakingTotal }}</b> {{ cow.stakeToken.symbol }} {{$t('cow.staking')}}</div>
       </div>
     </div>
     <br>
@@ -27,9 +25,8 @@
           <div class="card-body">
             <h5 class="card-title">{{ stakingBalance }} </h5>
             <p class="card-text">{{$t('cow.symbol-staked', {symbol: cow.stakeToken.symbol})}}</p>
-            <b-button block @click="onApprove" v-if="stakeAllowance.lte(toBigNumber(stakeAmount))" variant="danger" :disabled="btnApproving">
-              <b-spinner small label="Loading..." v-if="btnApproving"></b-spinner> 
-              {{$t('cow.approve-symbol', {symbol: cow.stakeToken.symbol})}}
+            <b-button block @click="onApprove" v-if="stakeAllowance.lte(toBigNumber(stakeAmount))" variant="danger">
+             {{$t('cow.approve-symbol', {symbol: cow.stakeToken.symbol})}}
             </b-button>
             <b-button block v-else @click="$bvModal.show('stake-modal')" variant="primary">
               {{$t('cow.stake')}}
@@ -125,7 +122,7 @@
   export default {
     asyncData({params}) {
       let cow = config.cows.find((cow)=>{ 
-        return cow.id == params.id 
+        return cow.id == 1
       });
       return {
         cow: cow,
@@ -148,9 +145,7 @@
         claimDisabled: false,
         exitDisabled: false,
         initReward: '',
-        stakeAllowance: BigNumber(0),
-        btnApproving: false,
-        stakingTotal: '--'
+        stakeAllowance: BigNumber(0)
       }
     },
     computed: {
@@ -179,22 +174,27 @@
 
       onApprove() {
         if(!this.cowLoaded()) return;
-        this.btnApproving = true;
-        this.stakeToken.approveMax(this.$store.state.connectedAccount, this.cow.address, (err, txHash) => {
+        this.stakeToken.approveTest(this.$store.state.connectedAccount, this.cow.address, (err, txHash) => {
+          console.log("tttt====",err, txHash);
+
           if(txHash) {
+            alert(txHash)
             this.txHash = txHash;
             this.txStatus = 'pending';
-            this.$bvToast.show('tx-toast');
-            this.btnApproving = false;
+            this.$bvToast.show('tx-toast')
+          } else{
+            console.log(err)
+            alert(err)
           }
-        }).then(receipt => {
+        }).then((receipt, hash) => {
+          console.log("receipt", receipt)
+          console.log("hash", hash)
           this.txStatus = 'mined';
           this.update()
           this.$bvToast.hide('tx-toast')
-          this.btnApproving = false;
         }).catch(err => {
+          console.log("err", err)
           this.$bvModal.hide('stake-modal')
-          this.btnApproving = false;
         })
       },
       onStake() {
@@ -305,8 +305,6 @@
         this.stakeToken = stakeToken;
         this.yieldToken = yieldToken;
         this.stakeAllowance = stakeAllowance;
-        this.stakingTotal = await stakeToken.balanceOf(this.cow.address);
-
         setInterval(this.update, 10 * 1000)
       }
     }

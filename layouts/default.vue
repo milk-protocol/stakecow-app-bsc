@@ -4,12 +4,12 @@
     <div class="header">
       <div class="container">
       <div class="row">
-        <div class="col-md-4 col-sm-5 nav-link text-center">
+        <div class="col-md-2 col-sm-5 nav-link text-center">
           <router-link to="/">
             <img src="~/static/cow.svg" class="logo"/>
           </router-link>
         </div>
-        <div class="col-md-4 text-center nav-container">
+        <div class="col-md-6 text-center nav-container">
           <b-nav class="justify-content-center">
             <b-nav-item>
               <router-link to="/">
@@ -20,7 +20,20 @@
               <router-link to="/market">
                 {{$t("navbar.market")}}
               </router-link>
-            </b-nav-item> 
+            </b-nav-item>
+            
+            <li class="nav-item">
+              <a href="https://swap.stakecow.com/" class="nav-link">
+                {{$t("navbar.exchange")}}
+              </a>
+            </li>
+
+            <b-nav-item>
+              <router-link to="/audit">
+                {{$t("navbar.audit")}}
+              </router-link>
+            </b-nav-item>
+         
             <b-nav-item>
               <router-link to="/about">
                 {{$t("navbar.about")}}
@@ -30,7 +43,7 @@
         </div>
         <div class="col-md-4 col-sm-5 text-right nav-link right">
           <div class="wallet" v-if="walletInstalled">
-            <span v-if="checkChainId()">
+            <span v-if="checkChainId">
               <span class="addr" v-if="$store.state.connectedAccount">
               <b-icon-wallet></b-icon-wallet>
               {{ shortAddr($store.state.connectedAccount) }}</span>
@@ -61,6 +74,7 @@
       <div class="footer-body">
         <a href="https://twitter.com/StakeCow" class="link" target="_blank">{{$t("footerbar.twitter")}}</a>
         <a href="https://t.me/StakeCow" class="link" target="_blank">{{$t("footerbar.telegram")}}</a>
+        <a href="https://t.me/stakecow_en" class="link" target="_blank">{{$t("footerbar.telegram_en")}}</a>
         <a href="https://github.com/milk-protocol" class="link" target="_blank">{{$t("footerbar.github")}}</a>
         <router-link to="/airdrop" class="link">
           {{$t("navbar.airdrop")}}
@@ -86,15 +100,19 @@
     computed: {
       currentLang(){
         return  this.$store.state.locale
+      },
+      checkChainId() {
+        if(/MathWallet/i.test(window.navigator.userAgent)){
+          return true
+        }
+        if(this.$store.state.isMathWallet) return true;
+        return config.chainId == this.$store.state.chainId
       }
     },
     methods: {
       checkLanguage(lang){
         this.$i18n.locale = lang
         this.$store.commit('updateLang', lang)
-      },
-      checkChainId() {
-        return config.chainId == this.$store.state.chainId
       },
       shortAddr(addr) {
         return utils.shortAddr(addr)
@@ -154,7 +172,8 @@
     height: 16px;
   }
   .link {
-    margin: 0 1rem;
+    margin: 0 0.5rem;
+    text-align: center;
   }
   .right{
     display:flex;

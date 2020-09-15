@@ -4,8 +4,10 @@
         "market": "WBNB",
         "airdrop": "Airdrop",
         "about": "About",
+        "audit": "Audit",
         "change-to-bsc": "Change to BSC",
-        "install-wallet": "Install Wallet"
+        "install-wallet": "Install Wallet",
+        "exchange": "Swap"
     },
     "home": {
         "note": "The Contract is no audited but open source, Please use at your own risk.",
@@ -13,7 +15,7 @@
         "protocol-desc": "MILK Protocol is an experimental DeFi degens on Binance Smart Chain.Use at your own risk.",
         "coming-soon": "Coming soon",
         "select": "Select",
-        "card-desc": "Likes {symbol}"
+        "card-desc": "Likes {symbol}(BEP20)"
     },
     "airdrop": {
         "airdrop-plan": "Airdrop Plan",
@@ -41,6 +43,7 @@
         "cowfactory": "CowFactory: {0}",
         "cowfactory-address": "{0}",
         "angier-cow": "Angier Cow: {0}",
+        "genxin-cow": "Genxi Cow: {0}",
         "angier-cow-address": "{0}"
     },
     "cow": {
@@ -54,7 +57,9 @@
         "greater-than": "Must be greater than 0",
         "unstake": "Unstake",
         "staking-balance": "Your staking balance: {stakingBalance} {symbol}",
-        "amount-greater-than": "Amount must be great than 0"
+        "amount-greater-than": "Amount must be great than 0",
+        "total": "Total",
+        "staking": "is staking"
     },
     "market": {
         "tip": "Do a small amount test first, and then do a large amount operation.",
@@ -72,7 +77,8 @@
     },
     "footerbar": {
         "twitter": "Twitter",
-        "telegram": "Telegram",
+        "telegram": "Telegram(Chinese)",
+        "telegram_en": "Telegram(English)",
         "github": "GitHub"
     }
 }

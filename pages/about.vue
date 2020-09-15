@@ -33,7 +33,13 @@
         </div>
         <div>
           <i18n path="about.holstein" tag="label" for="about.holstein-number">
-            <b>9282</b>
+            <b>4641</b>
+          </i18n>
+        </div>
+
+        <div>
+          <i18n path="about.holstein2" tag="label" for="about.holstein-number">
+            <b>4641</b>
           </i18n>
         </div>
 
@@ -53,6 +59,12 @@
         <div>
           <i18n path="about.angier-cow" tag="label" for="about.angier-cow-address">
             <a href="https://bscscan.com/address/0xA789383b848BcD7c60975094AE3ba5444ED70103" target="_blank">0xA789383b848BcD7c60975094AE3ba5444ED70103</a>
+          </i18n>
+        </div>
+
+        <div>
+          <i18n path="about.genxin-cow" tag="label" for="about.angier-cow-address">
+            <a href="https://bscscan.com/address/0xC3477ad3755DCD84C7a100807ED9c53fb3b8a0c8" target="_blank">0xC3477ad3755DCD84C7a100807ED9c53fb3b8a0c8</a>
           </i18n>
         </div>
 

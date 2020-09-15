@@ -2,7 +2,8 @@
 export const state = () => ({
 	locale: 'en',
 	connectedAccount: '',
-	chainId: ''
+	chainId: '',
+	isMathWallet: false
 });
 
 export const mutations = {
@@ -16,5 +17,7 @@ export const mutations = {
 	updateChainId(state, chainId) {
 		state.chainId = chainId
 	},
-
+	checkWallet(state, b) {
+		state.isMathWallet = b
+	}
 };

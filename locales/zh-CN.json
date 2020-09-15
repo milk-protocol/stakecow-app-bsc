@@ -4,8 +4,10 @@
         "market": "WBNB兑换",
         "airdrop": "空投",
         "about": "关于",
+        "audit": "审计",
         "change-to-bsc": "更换为币安智能链",
-        "install-wallet": "安装钱包"
+        "install-wallet": "安装钱包",
+        "exchange": "交易"
     },
     "home": {
         "note": "该合约开源但未经过审核, 请自行承担使用风险。",
@@ -13,7 +15,7 @@
         "protocol-desc": "MILK协议是币安智能链上的实验性DeFi程序，请自行承担使用风险",
         "coming-soon": "即将到来",
         "select": "选择",
-        "card-desc": "喜欢 {symbol}"
+        "card-desc": "喜欢 {symbol}(BEP20)"
     },
     "airdrop": {
         "airdrop-plan": "空投计划",
@@ -29,11 +31,12 @@
         "drop-free": "将免费空投 {0} 个MILK",
         "drop-free-number": "{0}",
         "cow": "奶牛",
-        "angier": "Angier: 已供应 {0} MILK, 每周减半, 第一周供应量为1000 MILK。",
+        "angier": "Angier: 总量 {0} MILK, 第一周供应量为1000 MILK，每周减半。",
         "angier-number": "{0}",
-        "genxi": "Genxi: 已供应 {0} MILK, 每周减半, 第一周供应量为1000 MILK。",
+        "genxi": "Genxi: 总量 {0} MILK, 第一周供应量为1000 MILK，每周减半。",
         "genxi-number": "{0}",
-        "holstein": "Holstein: 已供应 {0} MILK, 每周增加10%，第一周供应量为2000 MILK。",
+        "holstein": "Holstein elder sister: 总量 {0} MILK, 第一周供应量为1000 MILK，每周增加10%。",
+        "holstein2": "Holstein younger sister: 总量 {0} MILK, 第一周供应量为1000 MILK，每周增加10%。",
         "holstein-number": "{0}",
         "contracts": "合约",
         "milk": "MILK: {0}",
@@ -41,6 +44,7 @@
         "cowfactory": "农场: {0}",
         "cowfactory-address": "{0}",
         "angier-cow": "Angier 奶牛: {0}",
+        "genxin-cow": "Genxi 奶牛: {0}",
         "angier-cow-address": "{0}"
     },
     "cow": {
@@ -54,7 +58,9 @@
         "greater-than": "必须大于0",
         "unstake": "解押",
         "staking-balance": "您的质押余额: {stakingBalance} {symbol}",
-        "amount-greater-than": "数量必须大于0"
+        "amount-greater-than": "数量必须大于0",
+        "total": "总共",
+        "staking": "在挖矿"
     },
     "market": {
         "tip": "提醒：先做小额测试，再做大额操作。",
@@ -72,7 +78,8 @@
     },
     "footerbar": {
         "twitter": "Twitter",
-        "telegram": "Telegram",
+        "telegram": "电报群(中文)",
+        "telegram_en": "电报群(英文)",
         "github": "GitHub"
     }
 }
