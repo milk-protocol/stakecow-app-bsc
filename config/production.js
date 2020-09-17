@@ -82,6 +82,24 @@ module.exports = {
 			symbol: "bnb",
 			address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
 			decimal: 18
+		},
+		{
+			symbol: "USDT",
+			address: "0x55d398326f99059ff775485246999027b3197955",
+			decimals: 18,
+		},
+		{
+			symbol: "WBNB",
+			address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+			decimals: 18,
+		},
+		{
+			symbol: "DOT",
+			address: "0x7083609fce4d1d8dc0c979aab8c869ea2c873402",
+			decimals: 18,
 		}
-	]
+	],
+	oracle: "0x75Ca8F6c82df5FdFd09049f46AD5d072b0a53BF6",
+	pair_MILK_BNB: "0x6330c052e35f23ad219ad9afbaddf53a68f2b2b2",	
+	web3Provider: "https://bsc-dataseed1.defibit.io"
 }

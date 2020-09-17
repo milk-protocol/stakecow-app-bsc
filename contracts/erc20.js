@@ -14,10 +14,6 @@ export class Erc20 {
 		this.decimals = decimals;
 		this.symbol = symbol;
 	}
-
-	// get address() {
-	// 	return this.address
-	// }
 	
 	async balanceOf(user) {
 		let balance = await this.contract.methods.balanceOf(user).call();
