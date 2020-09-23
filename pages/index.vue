@@ -18,7 +18,7 @@
     </div>
     <br>
     <div class="price alert alert-success">
-      1 $MILK = {{ priceMILKUSDT.toFixed(4) }} $USDT = {{ priceMILKBNB.toFixed(4) }} $BNB
+      1 $MILK = {{ priceMILKUSDT ? priceMILKUSDT.toFixed(4) : '--' }} $USDT = {{ priceMILKBNB ? priceMILKBNB.toFixed(4) : '--' }} $BNB
     </div>
 
     <br>
@@ -52,8 +52,8 @@
     data () {
       return {
         cows: config.cows,
-        priceMILKUSDT: '--',
-        priceMILKBNB: '--',
+        priceMILKUSDT: null,
+        priceMILKBNB: null,
         apy: {
           1: '--',
           2: '--',
@@ -75,9 +75,6 @@
       this.priceMILKUSDT = BigNumber(prices[0]).times(BigNumber(prices[1]))
       this.priceMILKBNB =  BigNumber(prices[1]);
       this.priceDOTBNB = prices[2];
-
-      console.log("priceDOTBNB=", this.priceDOTBNB);
-      console.log("priceMILKBNB=", this.priceMILKBNB);
 
       this.cows.map(async(cow) => {
         if(cow.initialized) {

@@ -99,7 +99,19 @@ module.exports = {
 			decimals: 18,
 		}
 	],
-	oracle: "0x75Ca8F6c82df5FdFd09049f46AD5d072b0a53BF6",
+	oracle: "0xbf6527834dbb89cdc97a79fcd62e6c08b19f8ec0",
 	pair_MILK_BNB: "0x6330c052e35f23ad219ad9afbaddf53a68f2b2b2",	
-	web3Provider: "https://bsc-dataseed1.defibit.io"
+	web3Provider: "https://bsc-dataseed1.defibit.io",
+	cowHero: "0x9086C38D86509d61c9aE4845aad7019dAA2dE48C",
+	lockPool: "0x4039DA3341b70345f742C52e0f035c74F7f4F7b1",
+	lockToken: {
+		address: "0x6330c052e35f23ad219ad9afbaddf53a68f2b2b2",
+		decimals: 18,
+		symbol: "BNB-MILK LP"
+	},
+	milk: {
+		address: "0x8e9f5173e16ff93f81579d73a7f9723324d6b6af",
+		decimals: 18,
+		symbol: "MILK"
+	}
 }

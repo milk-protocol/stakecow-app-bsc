@@ -5,6 +5,8 @@ import Pair from './pair';
 import Oracle from './oracle';
 import Erc20Reader from './erc20_reader';
 import CowReader from './cow_reader';
+import LockPool from './lock_pool';
+import CowHero from './cow_hero';
 
 export {
 	Cow,
@@ -13,5 +15,7 @@ export {
 	Pair,
 	Oracle,
 	Erc20Reader,
-	CowReader
+	CowReader,
+	LockPool,
+	CowHero
 }

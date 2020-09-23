@@ -23,16 +23,16 @@
             </b-nav-item>
             
             <li class="nav-item">
-              <a href="https://swap.stakecow.com/" class="nav-link">
+              <a href="https://swap.stakecow.com/#/swap?inputCurrency=BNB&outputCurrency=0x8e9f5173e16ff93f81579d73a7f9723324d6b6af" class="nav-link">
                 {{$t("navbar.exchange")}}
               </a>
             </li>
 
             <b-nav-item>
-              <router-link to="/audit">
-                {{$t("navbar.audit")}}
+              <router-link to="/nft">
+                {{$t("navbar.nft")}}
               </router-link>
-            </b-nav-item>
+            </b-nav-item> 
          
             <b-nav-item>
               <router-link to="/about">
@@ -44,9 +44,12 @@
         <div class="col-md-4 col-sm-5 text-right nav-link right">
           <div class="wallet" v-if="walletInstalled">
             <span v-if="checkChainId">
+              <router-link to="/me">
               <span class="addr" v-if="$store.state.connectedAccount">
-              <b-icon-wallet></b-icon-wallet>
-              {{ shortAddr($store.state.connectedAccount) }}</span>
+                <b-icon-wallet></b-icon-wallet>
+                {{ shortAddr($store.state.connectedAccount) }}
+              </span>
+              </router-link>
             </span>
             <a href="https://docs.binance.org/smart-chain/wallet/metamask.html" target="_blank" v-else>{{$t("navbar.change-to-bsc")}}</a>
           </div>
@@ -76,9 +79,7 @@
         <a href="https://t.me/StakeCow" class="link" target="_blank">{{$t("footerbar.telegram")}}</a>
         <a href="https://t.me/stakecow_en" class="link" target="_blank">{{$t("footerbar.telegram_en")}}</a>
         <a href="https://github.com/milk-protocol" class="link" target="_blank">{{$t("footerbar.github")}}</a>
-        <router-link to="/airdrop" class="link">
-          {{$t("navbar.airdrop")}}
-        </router-link>
+        <a href="https://discord.gg/8wFnWdc" class="link" target="_blank">Discord</a>
       </div>
     </div>
   </div>

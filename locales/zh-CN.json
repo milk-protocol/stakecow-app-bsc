@@ -7,7 +7,9 @@
         "audit": "审计",
         "change-to-bsc": "更换为币安智能链",
         "install-wallet": "安装钱包",
-        "exchange": "交易"
+        "exchange": "交易",
+        "guard": "奶牛守卫",
+        "nft": "奶牛NFT"
     },
     "home": {
         "note": "该合约开源但未经过审核, 请自行承担使用风险。",
@@ -27,8 +29,8 @@
         "title": "MILK 协议",
         "total-supply": "总供应量: {0} MILK",
         "total-supply-number": "{0}",
-        "desc": "MILK将以YFI的名义分发: 无预挖矿, 无创始人股份, 无风险投资利益 - 简单的机会均等的股权分配，以吸引一个广泛而有远见的社区来管理协议和代币的未来。",
-        "drop-free": "将免费空投 {0} 个MILK",
+        "desc": "StakeCow是基于BSC的Yield Farming项目，没有预挖，没有创始人股份，没有风投利益-只是机会均等的股权分配。您可以通过提供流动性或者单一代币来赚取$MILK。我们创建了一个DeFi耕作系统，该系统对每个人都简单易行。StakeCow的理想是探索Defi矿币的链上去中心化治理机制。目前StakeCow允许使用三种方式来开采代币-提供流动性和简单地进行抵押。",
+        "drop-free": "",
         "drop-free-number": "{0}",
         "cow": "奶牛",
         "angier": "Angier: 总量 {0} MILK, 第一周供应量为1000 MILK，每周减半。",
@@ -81,5 +83,8 @@
         "telegram": "电报群(中文)",
         "telegram_en": "电报群(英文)",
         "github": "GitHub"
+    },
+    "nft": {
+        "about": "关于奶牛守卫计划"
     }
 }

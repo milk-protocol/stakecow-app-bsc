@@ -7,7 +7,9 @@
         "audit": "Audit",
         "change-to-bsc": "Change to BSC",
         "install-wallet": "Install Wallet",
-        "exchange": "Swap"
+        "exchange": "Swap",
+        "guard": "Cow Guardian",
+        "nft": "Cow NFT"
     },
     "home": {
         "note": "The Contract is no audited but open source, Please use at your own risk.",
@@ -80,5 +82,8 @@
         "telegram": "Telegram(Chinese)",
         "telegram_en": "Telegram(English)",
         "github": "GitHub"
+    },
+    "nft": {
+        "about": "About Cow Guard Plan"
     }
 }
