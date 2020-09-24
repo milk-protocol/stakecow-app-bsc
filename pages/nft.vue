@@ -23,7 +23,7 @@
               </b-button>
             </div>
             <div v-else>
-              <p class="card-text"> Lock <b>{{lockAmount}}</b> {{ token.symbol }} for <b>7</b> days to mint 1 COW </p>
+              <p class="card-text"> Lock <b>{{lockAmount}}</b> {{ token.symbol }} for <b>{{ days }}</b> days to mint 1 COW </p>
               <div>Your Balance: <b>{{ balance }}</b> {{ token.symbol }}</div>
               <b-button block @click="onApprove" variant="danger" v-if="!allowed">
                 Approve
@@ -100,6 +100,7 @@
         isLocked: false,
         canRedeem:  false,
         unlockTime: '--',
+        days: 7,
       }
     },
     computed: {
@@ -189,6 +190,8 @@
       },
       async update() {
         this.cardTotal = await this.cowHero.totalSupply();
+        this.days = await this.lockPool.lockPeriod();
+        this.lockAmount = await this.lockPool.lockAmount();
       }
     },
     async mounted() {
@@ -198,21 +201,25 @@
       this.lockToken = new Erc20(config.lockToken.address, config.lockToken.symbol, config.lockToken.decimals);
       this.cowHero = new CowHero(config.cowHero);
       let cardTotal = await this.cowHero.totalSupply();
-      let balance = await this.lockToken.balanceOf(account);
-      let allowance = await this.lockToken.allowance(account, this.lockPool.address);
-      let lockAmount = await this.lockPool.lockAmount();
-      if(allowance.gte(lockAmount)) {
-        this.allowed = true;
-      }
-      let canRedeem = await this.lockPool.canRedeem(account);
-      this.lockAmount = lockAmount;
-      this.cardTotal = cardTotal;
-      this.balance = balance;
-      this.isLocked = await this.lockPool.isLocked(account);
-      let unlockTime = await this.lockPool.unlockTime(account);
-      this.canRedeem = canRedeem;
-      this.unlockTime = new Date(unlockTime * 1000)
+      let lockAmount = this.lockAmount = await this.lockPool.lockAmount();
+      this.days = await this.lockPool.lockPeriod();
 
+      if(account) {
+        let balance = await this.lockToken.balanceOf(account);
+        let allowance = await this.lockToken.allowance(account, this.lockPool.address);
+       
+        if(allowance.gte(lockAmount)) {
+          this.allowed = true;
+        }
+        let canRedeem = await this.lockPool.canRedeem(account);
+        this.lockAmount = lockAmount;
+        this.cardTotal = cardTotal;
+        this.balance = balance;
+        this.isLocked = await this.lockPool.isLocked(account);
+        let unlockTime = await this.lockPool.unlockTime(account);
+        this.canRedeem = canRedeem;
+        this.unlockTime = new Date(unlockTime * 1000)
+      }
       setInterval(this.update, 3 * 1000)
     }
   }

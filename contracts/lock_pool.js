@@ -58,6 +58,11 @@ export class LockPool {
 		let amount =  await this.contractReader.methods.lockAmount().call();
 		return BigNumber(amount).shiftedBy(-this.lockToken.decimals);
 	}
+	async lockPeriod() {
+		let duration = await this.contractReader.methods.lockPeriod().call();
+		let days = duration / ( 24 * 3600);
+		return days
+	}
 
 	async isLocked(sender) {
 		return await this.contractReader.methods.isLocked(sender).call();

@@ -297,17 +297,19 @@
       let yieldToken = new Erc20(this.cow.yieldToken.address);
 
       if(this.cow.initialized) {
-        this.stakeWalletBalance = await stakeToken.balanceOf(this.$store.state.connectedAccount);
-        this.stakingBalance =  await cow.balanceOf(this.$store.state.connectedAccount)
-        this.rewards = await cow.earned(this.$store.state.connectedAccount);
-        let stakeAllowance =  await stakeToken.allowance(this.$store.state.connectedAccount, this.cow.address);
+        if(this.$store.state.connectedAccount) {
+          this.stakeWalletBalance = await stakeToken.balanceOf(this.$store.state.connectedAccount);
+          this.stakingBalance =  await cow.balanceOf(this.$store.state.connectedAccount)
+          this.rewards = await cow.earned(this.$store.state.connectedAccount);
+          this.stakeAllowance =  await stakeToken.allowance(this.$store.state.connectedAccount, this.cow.address);
+          setInterval(this.update, 10 * 1000)
+        }
         this.cowContract = cow;
         this.stakeToken = stakeToken;
         this.yieldToken = yieldToken;
-        this.stakeAllowance = stakeAllowance;
         this.stakingTotal = await stakeToken.balanceOf(this.cow.address);
 
-        setInterval(this.update, 10 * 1000)
+        
       }
     }
   }
