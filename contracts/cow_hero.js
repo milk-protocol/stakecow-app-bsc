@@ -31,6 +31,21 @@ export class CowHero {
 		let id = await this.contractReader.methods.tokenOfOwnerByIndex(owner, index).call();
 		return id
 	}
+
+	async setApprovalForAll(sender, operator, approved, callback) {
+		var gasPrice = this.defaultGasPrice;
+	  var tx = this.contract.methods.setApprovalForAll(operator, approved);
+	  var gasLimit = await tx.estimateGas({ value: 0, from: sender, to: this.address });
+	  return tx.send({
+	    from: sender,
+	    gasPrice: gasPrice,
+	    gas: Math.round(gasLimit * 1.1)
+	  }, callback);
+	}
+
+	async isApprovedForAll(owner, operator) {
+	  return this.contractReader.methods.isApprovedForAll(owner, operator).call();
+	}
 }
 
 export default CowHero;

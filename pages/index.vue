@@ -28,13 +28,25 @@
           <span class="avatar">{{cow.avatar}}</span>
           <div class="card-body">
             <h5 class="card-title title">{{ cow.name }}</h5>
-            <!-- <div class="desc">{{ cow.stakeToken.symbol }}</div> -->
             <div class="desc">{{$t("home.card-desc", { symbol: cow.stakeToken.symbol })}}</div>
             <p class="card-text apy"> APY: {{apy[cow.id]}}% </p>
             <a :href="'/cow/' + cow.id" v-if="cow.initialized" class="btn btn-block btn-success">
               {{$t("home.select")}}
             </a>
             <a href="#" v-else class="btn btn-secondary btn-block">{{$t("home.coming-soon")}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 cow">
+        <div class="card cow">
+          <span class="avatar">{{hybirdCow.avatar}}</span>
+          <div class="card-body">
+            <h5 class="card-title title">{{ hybirdCow.name }}</h5>
+            <div class="desc">{{$t("home.card-desc", { symbol: hybirdCow.stakeToken.symbol })}}</div>
+            <p class="card-text apy"> APY: --% </p>
+            <a :href="'/cow/hybird'" v-if="hybirdCow.initialized" class="btn btn-block btn-success">
+              {{$t("home.select")}}
+            </a>
           </div>
         </div>
       </div>
@@ -54,6 +66,7 @@
         cows: config.cows,
         priceMILKUSDT: null,
         priceMILKBNB: null,
+        hybirdCow: config.hybird,
         apy: {
           1: '--',
           2: '--',

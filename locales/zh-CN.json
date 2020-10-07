@@ -17,7 +17,7 @@
         "protocol-desc": "MILK协议是币安智能链上的实验性DeFi程序，请自行承担使用风险",
         "coming-soon": "即将到来",
         "select": "选择",
-        "card-desc": "喜欢 {symbol}(BEP20)"
+        "card-desc": "喜欢 {symbol}"
     },
     "airdrop": {
         "airdrop-plan": "空投计划",
@@ -38,7 +38,7 @@
         "genxi": "Genxi: 总量 {0} MILK, 第一周供应量为1000 MILK，每周减半。",
         "genxi-number": "{0}",
         "holstein": "Holstein elder sister: 总量 {0} MILK, 第一周供应量为1000 MILK，每周增加10%。",
-        "holstein2": "Holstein younger sister: 总量 {0} MILK, 第一周供应量为1000 MILK，每周增加10%。",
+        "holstein2": "Holstein younger sister: 详情待公布",
         "holstein-number": "{0}",
         "contracts": "合约",
         "milk": "MILK: {0}",
@@ -55,14 +55,18 @@
         "symbol-staked": "已质押{symbol}",
         "approve-symbol": "批准{symbol}",
         "stake": "质押",
-        "harvest-unstake": "收获 & 解押",
+        "harvest-unstake": "解押",
+        "exit": "收获并退出",
         "balance": "余额: ",
         "greater-than": "必须大于0",
         "unstake": "解押",
         "staking-balance": "您的质押余额: {stakingBalance} {symbol}",
         "amount-greater-than": "数量必须大于0",
         "total": "总共",
-        "staking": "在挖矿"
+        "staking": "在挖矿",
+        "warning": "提醒: 由于近期CREAM.finance的BNB借出率很高，挖矿的BNB可能会被借走，所以取出的时候会由于流动性不足而暂时不能提出来，可以等流动性充足再提取。",
+        "desc1": "她喜欢BNB，但是必须锁定 NFT COW 才能挤奶",
+        "desc2": "每个 NFT COW 限额 500 BNB"
     },
     "market": {
         "tip": "提醒：先做小额测试，再做大额操作。",
@@ -80,8 +84,8 @@
     },
     "footerbar": {
         "twitter": "Twitter",
-        "telegram": "电报群(中文)",
-        "telegram_en": "电报群(英文)",
+        "telegram": "电报(中文)",
+        "telegram_en": "电报(英文)",
         "github": "GitHub"
     },
     "nft": {

@@ -29,7 +29,7 @@
                 Approve
               </b-button>
               <b-button block @click="onStake" variant="primary" v-else>
-                Lock 30 BNB-MILK LP
+                Lock {{lockAmount}} {{ token.symbol }}
               </b-button>
             </div>
           </div>

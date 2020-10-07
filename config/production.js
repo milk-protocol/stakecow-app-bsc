@@ -57,26 +57,27 @@ module.exports = {
 				decimals: 18,
 				symbol: "MILK"
 			}
-		},
-		{
-			id: 4,
-			name: "Holstein younger sister",
-			avatar: "🐄",
-			desc: "Increase 10% every week",
-			totalAmount: 2000,
-			address: "",
-			stakeToken: {
-				address: "",
-				decimals: 18,
-				symbol: "--"
-			},
-			yieldToken: {
-				address: "0x8E9f5173e16Ff93F81579d73A7f9723324d6B6aF",
-				decimals: 18,
-				symbol: "MILK"
-			}
 		}
 	],
+	hybird: {
+		id: 4,
+		name: "Holstein younger sister",
+		avatar: "🐄",
+		desc: "",
+		totalAmount: 2000,
+		initialized: true,
+		address: "0x62A5e32EBdf6F98B4C2AFcee7351b4B9eB044F29",
+		stakeToken: {
+			address: "0x0000000000000000000000000000000000000000",
+			decimals: 18,
+			symbol: "BNB"
+		},
+		yieldToken: {
+			address: "0x8e9f5173e16ff93f81579d73a7f9723324d6b6af",
+			decimals: 18,
+			symbol: "MILK"
+		}
+	},
 	tokens: [
 		{
 			symbol: "bnb",

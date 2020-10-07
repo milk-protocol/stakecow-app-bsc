@@ -1,10 +1,21 @@
 <template>
   <div>
+    <div class="alert alert-danger" role="alert">
+      {{ $t('cow.warning') }}
+    </div>
+
     <div class="row">
       <div class="col-12 text-center">
         <span class="avatar">{{cow.avatar}}</span>
         <div class="name">{{cow.name}}</div>
-        <div class="desc">{{cow.desc}}</div>
+        <br>
+        <div class="desc">{{ $t('cow.desc1')}} </div>
+        <div class="desc">{{ $t('cow.desc2')}} </div>
+
+        <br>
+        <div>Reward rate: 100 MILK / day</div>
+        <div>Reward duration: 20 days</div>
+        <div>Start time: {{ startAt }}</div>
         <br>
         <div>{{$t('cow.total')}} <b>{{ stakingTotal.toFixed(6, 1) }}</b> {{ cow.stakeToken.symbol }} {{$t('cow.staking')}}</div>
       </div>
@@ -14,8 +25,10 @@
       <div class="col-6">
         <div class="card text-center">
           <div class="card-body">
-            <h5 class="card-title">{{ rewards.toFixed(6, 1) }}</h5>
-            <p class="card-text">{{$t('cow.earned')}}</p>
+            <h5 class="card-text">Earned</h5>
+            <div class="card-text">{{ rewards.toFixed(8, 1) }} </div>
+            <div class="card-text">MILK</div>
+            <p></p>
             <b-button block @click="onClaim" variant="success">
              {{$t('cow.harvest')}}
             </b-button>
@@ -25,11 +38,13 @@
       <div class="col-6">
         <div class="card text-center">
           <div class="card-body">
-            <h5 class="card-title">{{ stakingBalance }} </h5>
-            <p class="card-text">{{$t('cow.symbol-staked', {symbol: cow.stakeToken.symbol})}}</p>
-            <b-button block @click="onApprove" v-if="stakeAllowance.lte(toBigNumber(stakeAmount))" variant="danger" :disabled="btnApproving">
+            <h5 class="card-text">Staking</h5>
+            <div class="card-text">{{ stakingBalance }} BNB</div>
+            <div class="card-text">Interest {{ bnbInterest }} BNB </div>
+            <p></p>
+            <b-button block @click="onApprove" v-if="!isApprovedForAll" variant="danger" :disabled="btnApproving">
               <b-spinner small label="Loading..." v-if="btnApproving"></b-spinner> 
-              {{$t('cow.approve-symbol', {symbol: cow.stakeToken.symbol})}}
+              {{$t('cow.approve-symbol', { symbol: " NFT-COW" })}}
             </b-button>
             <b-button block v-else @click="$bvModal.show('stake-modal')" variant="primary">
               {{$t('cow.stake')}}
@@ -41,7 +56,7 @@
     <br>
     <div class="row">
       <div class="col-12 text-center">
-        <b-button @click="onExit" variant="primary">
+        <b-button @click="onExit" variant="danger">
           {{$t('cow.exit')}}
         </b-button>
       </div>
@@ -117,18 +132,15 @@
 
 <script>
   import utils from '~/mixins/utils'
-  import { Cow, Erc20 } from '~/contracts'
+  import { HybirdCow, Erc20, BNB, CowHero, Wallet, ZERO_ADDR, CREAM_BNB } from '~/contracts'
   import { toBN, BN, isBN } from 'web3-utils'
   import { BigNumber } from 'bignumber.js'
   import config from '~/config'
 
   export default {
     asyncData({params}) {
-      let cow = config.cows.find((cow)=>{ 
-        return cow.id == params.id 
-      });
       return {
-        cow: cow,
+        cow: config.hybird,
         stakeAddress: '',
         txid: '',
         show: true,
@@ -136,7 +148,7 @@
         titleStatus: '',
         txStatus: 'null',
         stakeWalletBalance: new BigNumber(0),
-        stakingBalance: '0',
+        stakingBalance: new BigNumber(0),
         rewards: new BigNumber(0),
         isBalanceLoaded: false,
         stakeAmount: '',
@@ -148,9 +160,15 @@
         claimDisabled: false,
         exitDisabled: false,
         initReward: '',
-        stakeAllowance: BigNumber(0),
+        stakeAllowance: BigNumber(99999999999),
         btnApproving: false,
-        stakingTotal: new BigNumber(0)
+        stakingTotal: new BigNumber(0),
+        isApprovedForAll: false,
+        cowHero: null,
+        bnbRewards: new BigNumber(0),
+        creamRewards: new BigNumber(0),
+        startAt: new Date(1602057600 * 1000),
+        crBNBLiquidity: new BigNumber(0)
       }
     },
     computed: {
@@ -160,6 +178,13 @@
 
       userStakeWalletBalance() {
         return  this.stakeWalletBalance.toFixed(5, 1);
+      },
+      bnbInterest() {
+        if(this.bnbRewards.gt(this.stakingBalance) && this.stakingBalance.gt(0)) {
+          return this.bnbRewards.minus(this.stakingBalance).toFixed(8, 1)
+        } else {
+          return new BigNumber(0).toFixed(8, 1)
+        }
       }
     },
     methods: {
@@ -184,7 +209,7 @@
       onApprove() {
         if(!this.cowLoaded()) return;
         this.btnApproving = true;
-        this.stakeToken.approveMax(this.$store.state.connectedAccount, this.cow.address, (err, txHash) => {
+        this.cowHero.setApprovalForAll(this.$store.state.connectedAccount, this.cow.address, true, (err, txHash) => {
           if(txHash) {
             this.txHash = txHash;
             this.txStatus = 'pending';
@@ -291,27 +316,47 @@
         this.stakeWalletBalance = await this.stakeToken.balanceOf(this.$store.state.connectedAccount);
         this.stakingBalance = await this.cowContract.balanceOf(this.$store.state.connectedAccount);
         this.rewards = await this.cowContract.earned(this.$store.state.connectedAccount);
-        this.stakeAllowance = await this.stakeToken.allowance(this.$store.state.connectedAccount, this.cow.address);
+
+        this.isApprovedForAll = await this.cowHero.isApprovedForAll(this.$store.state.connectedAccount, this.cow.address);
+
+        this.stakingTotal = await this.cowContract.totalSupply();
+        // this.crBNBLiquidity = await this.stakeToken.balanceOf(CREAM_BNB);
+        if(this.wallet){
+          this.bnbRewards = await this.wallet.calcBNB();
+          this.creamRewards = await this.wallet.calcCompSupplyReward();
+        }
       }
     },
     async mounted() {
       await this.$onConnect();
-      let cow = new Cow(this.cow.address, this.cow.stakeToken, this.cow.yieldToken);
-      let stakeToken = new Erc20(this.cow.stakeToken.address);
+      let cow = new HybirdCow(this.cow.address, this.cow.stakeToken, this.cow.yieldToken);
+      let stakeToken = new BNB();
       let yieldToken = new Erc20(this.cow.yieldToken.address);
+      this.cowHero = new CowHero(config.cowHero);
 
       if(this.cow.initialized) {
         if(this.$store.state.connectedAccount) {
           this.stakeWalletBalance = await stakeToken.balanceOf(this.$store.state.connectedAccount);
-          this.stakingBalance =  await cow.balanceOf(this.$store.state.connectedAccount)
+          this.stakingBalance = await cow.balanceOf(this.$store.state.connectedAccount)
           this.rewards = await cow.earned(this.$store.state.connectedAccount);
-          this.stakeAllowance =  await stakeToken.allowance(this.$store.state.connectedAccount, this.cow.address);
+
+          this.isApprovedForAll = await this.cowHero.isApprovedForAll(this.$store.state.connectedAccount, this.cow.address)
+
+          let walletAddress = await cow.getWallet(this.$store.state.connectedAccount);
+          if(walletAddress != ZERO_ADDR) {
+            this.wallet = new Wallet(walletAddress);
+            this.bnbRewards = await this.wallet.calcBNB();
+            this.creamRewards = await this.wallet.calcCompSupplyReward();
+          }
           setInterval(this.update, 10 * 1000)
         }
+
         this.cowContract = cow;
         this.stakeToken = stakeToken;
         this.yieldToken = yieldToken;
-        this.stakingTotal = await stakeToken.balanceOf(this.cow.address);
+        this.stakingTotal = await cow.totalSupply();
+
+        // this.crBNBLiquidity = await this.stakeToken.balanceOf(CREAM_BNB);
       }
     }
   }
@@ -328,7 +373,7 @@
     font-size: 1.2rem;
   }
   .desc {
-    color: #666;
+    color: #007bff;
   }
   .info {
     background-color: #eee;

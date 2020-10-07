@@ -17,7 +17,7 @@
         "protocol-desc": "MILK Protocol is an experimental DeFi degens on Binance Smart Chain.Use at your own risk.",
         "coming-soon": "Coming soon",
         "select": "Select",
-        "card-desc": "Likes {symbol}(BEP20)"
+        "card-desc": "Likes {symbol}"
     },
     "airdrop": {
         "airdrop-plan": "Airdrop Plan",
@@ -37,7 +37,8 @@
         "angier-number": "{0}",
         "genxi": "Genxi: {0} MILK supplied, halve every week, first week supply is 1000 MILK.",
         "genxi-number": "{0}",
-        "holstein": "Holstein: {0} MILK supplied, increase 10% everyweek, first week supply is 2000 MILK.",
+        "holstein": "Holstein elder sister: {0} MILK supplied, increase 10% everyweek, first week supply is 1000 MILK.",
+        "holstein2": "Holstein younger sister: To be announced",
         "holstein-number": "{0}",
         "contracts": "Contracts",
         "milk": "MILK: {0}",
@@ -54,14 +55,18 @@
         "symbol-staked": "{symbol} staked",
         "approve-symbol": "Approve {symbol}",
         "stake": "Stake",
-        "harvest-unstake": "Harvest & Unstake",
+        "harvest-unstake": "Unstake",
+        "exit": "Harvest and Exit",
         "balance": "Balance: ",
         "greater-than": "Must be greater than 0",
         "unstake": "Unstake",
         "staking-balance": "Your staking balance: {stakingBalance} {symbol}",
         "amount-greater-than": "Amount must be great than 0",
         "total": "Total",
-        "staking": "is staking"
+        "staking": "is staking",
+        "warning": "Warning: Because BNB lending rate On cream.finance is very high, your staking BNB may be borrowed, it will be temporarily unable to withdraw due to insufficient liquidity, and it can be withdrawn after sufficient liquidity.",
+        "desc1": "She likes BNB, and NFT COW is required.",
+        "desc2": "Each NFT COW has a limit of 500 BNB"
     },
     "market": {
         "tip": "Do a small amount test first, and then do a large amount operation.",
