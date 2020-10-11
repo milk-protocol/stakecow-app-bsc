@@ -68,6 +68,18 @@
           </i18n>
         </div>
 
+        <div>
+          <i18n path="about.holstein1-cow" tag="label" for="about.holstein-cow-address">
+            <a href="https://bscscan.com/address/0x3C51a88134ef088C722f946202B3c4A197eC5BDE" target="_blank">0x3C51a88134ef088C722f946202B3c4A197eC5BDE</a>
+          </i18n>
+        </div>
+
+        <div>
+          <i18n path="about.holstein2-cow" tag="label" for="about.holstein-cow-address">
+            <a href="https://bscscan.com/address/0x62A5e32EBdf6F98B4C2AFcee7351b4B9eB044F29" target="_blank">0x62A5e32EBdf6F98B4C2AFcee7351b4B9eB044F29</a>
+          </i18n>
+        </div>
+
       </div>
     </div>
   </div>

@@ -20,6 +20,11 @@ export class CowReader {
 		let rewardRate = await this.contract.methods.rewardRate().call();
 		return BigNumber(rewardRate).div(this.yieldPrecision);
 	}
+
+	async totalSupply() {
+		let total = await this.contract.methods.totalSupply().call();
+		return BigNumber(total).div(this.stakePrecision);
+	}
 }
 
 export default CowReader;

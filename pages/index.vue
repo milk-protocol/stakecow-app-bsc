@@ -43,7 +43,7 @@
           <div class="card-body">
             <h5 class="card-title title">{{ hybirdCow.name }}</h5>
             <div class="desc">{{$t("home.card-desc", { symbol: hybirdCow.stakeToken.symbol })}}</div>
-            <p class="card-text apy"> APY: --% </p>
+            <p class="card-text apy"> APY: {{hybirdCowAPY}}% </p>
             <a :href="'/cow/hybird'" v-if="hybirdCow.initialized" class="btn btn-block btn-success">
               {{$t("home.select")}}
             </a>
@@ -57,7 +57,7 @@
 
 <script>
   import config from '~/config'
-  import { Pair, Oracle, Erc20Reader, CowReader } from '~/contracts'
+  import { Pair, Oracle, Erc20Reader, CowReader, CREAM_BNB, CrBNB } from '~/contracts'
   import { BigNumber } from 'bignumber.js'
 
   export default {
@@ -67,6 +67,7 @@
         priceMILKUSDT: null,
         priceMILKBNB: null,
         hybirdCow: config.hybird,
+        hybirdCowAPY: '--',
         apy: {
           1: '--',
           2: '--',
@@ -89,6 +90,14 @@
       this.priceMILKBNB =  BigNumber(prices[1]);
       this.priceDOTBNB = prices[2];
 
+      let hybirdCowReader = new CowReader(this.hybirdCow.address, this.hybirdCow.stakeToken, this.hybirdCow.yieldToken)
+
+      let crBNB = new CrBNB(CREAM_BNB);
+      let apy = await crBNB.APY();
+      let total = await hybirdCowReader.totalSupply();
+      let rate = await hybirdCowReader.rewardRate();
+      this.hybirdCowAPY = rate.times(365 * 24 * 60 * 60).div(total).plus(apy).times(100).toFixed(2);
+
       this.cows.map(async(cow) => {
         if(cow.initialized) {
           let erc20Reader = new Erc20Reader(cow.stakeToken.address, cow.stakeToken.symbol, cow.stakeToken.decimals)
@@ -96,7 +105,7 @@
           let rewardRate = await cowReader.rewardRate();
           let balance = await erc20Reader.balanceOf(cow.address);
           let rewards = rewardRate.times(365 * 24 * 60 * 60).div(balance)
-          console.log(cow.name, rewards.toString());
+
           if(cow.id == 1) {
             this.apy[1] = rewards.times(100).toFixed(2)
           } else if(cow.id == 2) {

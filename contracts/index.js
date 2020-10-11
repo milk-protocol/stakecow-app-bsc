@@ -10,6 +10,7 @@ import CowHero from './cow_hero';
 import HybirdCow from './hybird_cow';
 import BNB from './bnb';
 import Wallet from './wallet';
+import CrBNB from './crbnb';
 
 const ZERO_ADDR = "0x0000000000000000000000000000000000000000";
 const CREAM_BNB = "0x1ffe17b99b439be0afc831239ddecda2a790ff3a";
@@ -27,5 +28,6 @@ export {
 	BNB,
 	Wallet,
 	ZERO_ADDR,
-	CREAM_BNB
+	CREAM_BNB,
+	CrBNB
 }

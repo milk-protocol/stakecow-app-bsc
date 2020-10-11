@@ -56,9 +56,15 @@
     <br>
     <div class="row">
       <div class="col-12 text-center">
+        <b-button @click="$bvModal.show('unstake-modal')" variant="primary">
+          {{$t('cow.harvest-unstake')}}
+        </b-button>
         <b-button @click="onExit" variant="danger">
           {{$t('cow.exit')}}
         </b-button>
+      </div>
+      <div class="col-12 text-center liquidity">
+        Liquidity on Cream: <b>{{ crBNBLiquidity.toFixed(6, 1) }}</b> BNB
       </div>
     </div>
 
@@ -320,7 +326,7 @@
         this.isApprovedForAll = await this.cowHero.isApprovedForAll(this.$store.state.connectedAccount, this.cow.address);
 
         this.stakingTotal = await this.cowContract.totalSupply();
-        // this.crBNBLiquidity = await this.stakeToken.balanceOf(CREAM_BNB);
+        this.crBNBLiquidity = await this.stakeToken.balanceOf(CREAM_BNB);
         if(this.wallet){
           this.bnbRewards = await this.wallet.calcBNB();
           this.creamRewards = await this.wallet.calcCompSupplyReward();
@@ -355,8 +361,7 @@
         this.stakeToken = stakeToken;
         this.yieldToken = yieldToken;
         this.stakingTotal = await cow.totalSupply();
-
-        // this.crBNBLiquidity = await this.stakeToken.balanceOf(CREAM_BNB);
+        this.crBNBLiquidity = await this.stakeToken.balanceOf(CREAM_BNB);
       }
     }
   }
@@ -406,5 +411,8 @@
   }
   .tx-status {
     text-transform: capitalize;
+  }
+  .liquidity {
+    margin-top: 2rem;
   }
 </style>

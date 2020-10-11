@@ -38,7 +38,7 @@
         "genxi": "Genxi: {0} MILK supplied, halve every week, first week supply is 1000 MILK.",
         "genxi-number": "{0}",
         "holstein": "Holstein elder sister: {0} MILK supplied, increase 10% everyweek, first week supply is 1000 MILK.",
-        "holstein2": "Holstein younger sister: To be announced",
+        "holstein2": "Holstein younger sister: 100 MILK per day, duration is 20 days.",
         "holstein-number": "{0}",
         "contracts": "Contracts",
         "milk": "MILK: {0}",
@@ -47,6 +47,8 @@
         "cowfactory-address": "{0}",
         "angier-cow": "Angier Cow: {0}",
         "genxin-cow": "Genxi Cow: {0}",
+        "holstein1-cow": "Holstein elder sister Cow: {0}",
+        "holstein2-cow": "Holstein younger sister Cow: {0}",
         "angier-cow-address": "{0}"
     },
     "cow": {
