@@ -4,7 +4,8 @@
       <div class="col-12 text-center">
         <span class="avatar">{{cow.avatar}}</span>
         <div class="name">{{cow.name}}</div>
-        <div class="desc">{{cow.desc}}</div>
+        <div v-if="cow.id == 3">stopped producing $MILK at {{ new Date(1602513000 * 1000) }} </div>
+        <div class="desc" v-if="cow.id != 3">{{cow.desc}}</div>
         <br>
         <div>{{$t('cow.total')}} <b>{{ stakingTotal.toFixed(6, 1) }}</b> {{ cow.stakeToken.symbol }} {{$t('cow.staking')}}</div>
       </div>

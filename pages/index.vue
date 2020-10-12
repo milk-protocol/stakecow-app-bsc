@@ -111,7 +111,7 @@
           } else if(cow.id == 2) {
             this.apy[2] = rewards.times(this.priceMILKBNB).div(this.priceDOTBNB).times(100).toFixed(2)
           } else if(cow.id == 3) {
-            this.apy[3] = rewards.times(this.priceMILKBNB).div(this.priceMILKBNB.plus(1)).times(100).toFixed(2)
+            this.apy[3] = new BigNumber(0)
           }
         }
         return cow
