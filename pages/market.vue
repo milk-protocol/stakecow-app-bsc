@@ -45,7 +45,7 @@
 </template>
 <script>
 import { BigNumber } from 'bignumber.js'
-import { Cow, Erc20, Wbnb } from '~/contracts'
+import { Cow, Erc20, Wbnb, BNB, web3Reader, web3Writer } from '~/contracts'
 import { toBN } from 'web3-utils'
 import utils from '~/mixins/utils'
 
@@ -95,11 +95,10 @@ export default {
         etherscanTx(tx) {
             return utils.etherscanTx(tx)
         },
-        getBnbBalance(){
+        async getBnbBalance(){
             if(this.erc20) {
-                window.web3.eth.getBalance(this.$store.state.connectedAccount, "latest", (err, data) => {
-                    this.bnb_balance = data ? new BigNumber(data).shiftedBy(-18) : 0
-                })
+                let bnb = new BNB();
+                this.bnb_balance = await bnb.balanceOf(this.$store.state.connectedAccount);
             }
         },
         async getWbnbBalance(){
@@ -122,7 +121,7 @@ export default {
                         this.transactions.push(result)
                         let self = this;
                         let timer = setInterval(()=>{
-                          window.web3.eth.getTransactionReceipt(result, (err, receipt)=>{
+                          web3Reader.eth.getTransactionReceipt(result, (err, receipt)=>{
                             if(receipt) {
                               self.getBnbBalance();
                               self.getWbnbBalance().then(data => {
@@ -146,7 +145,7 @@ export default {
                     gasPrice: toBN(20000000000),
                     gas: 70000
                 }
-                window.web3.eth.sendTransaction(obj, (err, result) => {
+                web3Writer.eth.sendTransaction(obj, (err, result) => {
                     if(err) {
                         this.$bvToast.toast(error, {
                             title: this.$t('market.error'),
@@ -156,7 +155,7 @@ export default {
                         this.transactions.push(result);
                         let self = this;
                         let timer = setInterval(()=>{
-                          window.web3.eth.getTransactionReceipt(result, (err, receipt)=>{
+                          web3Reader.eth.getTransactionReceipt(result, (err, receipt)=>{
                             if(receipt) {
                               self.getBnbBalance();
                               self.getWbnbBalance().then(data => {
@@ -176,6 +175,12 @@ export default {
         this.getWbnbBalance().then(data => {
             this.wbnb_balance = data
         })
+    },
+    async mounted() {
+      try{
+        await this.$onConnect();
+      } catch {
+      }
     }
 }
 </script>

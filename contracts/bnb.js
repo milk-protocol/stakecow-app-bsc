@@ -25,12 +25,6 @@ export class BNB {
 	async getSymbol() {
 		return this.symbol;
 	}
-
-	async allowance(owner, spender) {
-		let allowedBalance = await this.contract.methods.allowance(owner, spender).call();
-		let precision = await this.getPrecision()
-		return BigNumber(allowedBalance).div(precision);
-	}
 }
 
 export default BNB;

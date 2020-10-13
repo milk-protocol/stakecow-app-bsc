@@ -1,6 +1,7 @@
 export default ({ store }, inject) => {
     inject('onConnect', async () => {
         return new Promise((resolve, reject) => {
+            let count = 0;
             let timer = setInterval(async () => {
                 if(window.ethereum) {
                     if(window.ethereum.on) {
@@ -43,8 +44,11 @@ export default ({ store }, inject) => {
                     //   store.commit('checkWallet', window.ethereum.isMathWallet);
                     // }
                 } else{
-                    clearInterval(timer);
-                    reject()
+                    count += 1;
+                    if(count > 20){
+                        clearInterval(timer);
+                        reject()
+                    }
                 }
             }, 10);
         });
