@@ -2,6 +2,7 @@ import Web3 from 'web3'
 import { toBN, BN, isBN } from 'web3-utils'
 import { BigNumber } from 'bignumber.js'
 BigNumber.set({ DECIMAL_PLACES: 18 })
+import config from  '~/config'
 
 const COW_ABI = require('./abis/cow.json');
 
@@ -10,8 +11,11 @@ import Erc20 from './erc20'
 export class Cow {
 	constructor(address, stakeToken, yieldToken) {
 		this.web3 = new Web3(window.ethereum);
+		this.web3Reader = new Web3(new Web3.providers.HttpProvider(config.web3Provider));
 		this.address = address;
 		this.contract = new this.web3.eth.Contract(COW_ABI, address);
+		this.contractReader = new this.web3Reader.eth.Contract(COW_ABI, address);
+
 		this.stakeToken = stakeToken;
 		this.yieldToken = yieldToken;
 		this.defaultGasPrice = 20000000000;
@@ -24,15 +28,15 @@ export class Cow {
 	}
 
 	async stakeTokenAddress() {
-		return this.stakeToken ? this.stakeToken.address : await this.contract.methods.stakeToken().call();
+		return this.stakeToken ? this.stakeToken.address : await this.contractReader.methods.stakeToken().call();
 	}
 
 	async yieldTokenAddress() {
-		return this.yieldToken ? this.stakeToken.address : await this.contract.methods.yieldToken().call();
+		return this.yieldToken ? this.stakeToken.address : await this.contractReader.methods.yieldToken().call();
 	}
 
 	async totalSupply() {
-		let supply = await this.contract.methods.totalSupply().call();
+		let supply = await this.contractReader.methods.totalSupply().call();
 		return BigNumber(supply).div(this.yieldPrecision);
 	}
 
@@ -57,41 +61,41 @@ export class Cow {
 	}
 
 	async earned(sender) {
-		let earned = await this.contract.methods.earned(sender).call();
+		let earned = await this.contractReader.methods.earned(sender).call();
 		return BigNumber(earned).div(this.yieldPrecision);
 	}
 
 	async balanceOf(sender) {
-		let balance =  await this.contract.methods.balanceOf(sender).call();
+		let balance =  await this.contractReader.methods.balanceOf(sender).call();
 		return BigNumber(balance).div(this.stakePrecision);
 	}
 
 	async periodFinish() {
-		return await this.contract.methods.periodFinish().call();
+		return await this.contractReader.methods.periodFinish().call();
 	}
 
 	async duration() {
-		return await this.contract.methods.duration().call();
+		return await this.contractReader.methods.duration().call();
 	}
 
 	async lastUpdateTime() {
-		return await this.contract.methods.lastUpdateTime().call();
+		return await this.contractReader.methods.lastUpdateTime().call();
 	}
 
 	async startTime() {
-		return await this.contract.methods.starttime().call();
+		return await this.contractReader.methods.starttime().call();
 	}
 	async finishTime() {
-		return await this.contract.methods.finishTime().call();
+		return await this.contractReader.methods.finishTime().call();
 	}
 
 	async initreward() {
-		let initReward = await this.contract.methods.initreward().call();
+		let initReward = await this.contractReader.methods.initreward().call();
 		return BigNumber(initReward).div(this.yieldPrecision);
 	}
 
 	async rewardRate() {
-		let rewardRate = await this.contract.methods.rewardRate().call();
+		let rewardRate = await this.contractReader.methods.rewardRate().call();
 		return BigNumber(rewardRate).div(this.yieldPrecision);
 	}
 

@@ -14,6 +14,7 @@ import CrBNB from './crbnb';
 
 const ZERO_ADDR = "0x0000000000000000000000000000000000000000";
 const CREAM_BNB = "0x1ffe17b99b439be0afc831239ddecda2a790ff3a";
+const BNB_MILK_LP = "0x6330c052e35f23ad219ad9afbaddf53a68f2b2b2";
 export {
 	Cow,
 	Erc20,

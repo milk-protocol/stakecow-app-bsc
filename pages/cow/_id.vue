@@ -296,7 +296,11 @@
       }
     },
     async mounted() {
-      await this.$onConnect();
+      try{
+        await this.$onConnect();
+      }catch{
+      }
+      
       let cow = new Cow(this.cow.address, this.cow.stakeToken, this.cow.yieldToken);
       let stakeToken = new Erc20(this.cow.stakeToken.address);
       let yieldToken = new Erc20(this.cow.yieldToken.address);
@@ -312,8 +316,8 @@
         this.cowContract = cow;
         this.stakeToken = stakeToken;
         this.yieldToken = yieldToken;
-        this.stakingTotal = await stakeToken.balanceOf(this.cow.address);
       }
+      this.stakingTotal = await stakeToken.balanceOf(this.cow.address);
     }
   }
 </script>

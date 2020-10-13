@@ -23,14 +23,24 @@
               </b-button>
             </div>
             <div v-else>
-              <p class="card-text"> Lock <b>{{lockAmount}}</b> {{ token.symbol }} for <b>{{ days }}</b> days to mint 1 COW </p>
+              <div class="amount">
+                <div class="card-text"> Lock <b>{{lockAmount}}</b> {{ token.symbol }} for <b>{{ days }}</b> days to mint 1 COW </div>
+                <div class="calc"><b>{{lockAmount}}</b> {{ token.symbol }}  = <b>{{tokenPair[0]}}</b> MILK + <b>{{tokenPair[1]}}</b> BNB</div>
+              </div>
+
               <div>Your Balance: <b>{{ balance }}</b> {{ token.symbol }}</div>
-              <b-button block @click="onApprove" variant="danger" v-if="!allowed">
-                Approve
-              </b-button>
-              <b-button block @click="onStake" variant="primary" v-else>
-                Lock {{lockAmount}} {{ token.symbol }}
-              </b-button>
+
+              <div v-if="balance.gt(lockAmount)">
+                <b-button block @click="onApprove" variant="danger" v-if="!allowed">
+                  Approve
+                </b-button>
+                <b-button block @click="onStake" variant="primary" v-else>
+                  Lock {{lockAmount}} {{ token.symbol }}
+                </b-button>
+              </div>
+              <div v-else>
+                <a href="https://swap.stakecow.com/#/add/BNB/0x8E9f5173e16Ff93F81579d73A7f9723324d6B6aF" class="btn btn-block btn-primary" target="_blank">Get {{ token.symbol }}</a>
+              </div>
             </div>
           </div>
         </div>
@@ -63,7 +73,7 @@
 
 <script>
   import utils from '~/mixins/utils'
-  import { Erc20, LockPool, CowHero } from '~/contracts'
+  import { Erc20, LockPool, CowHero, Pair } from '~/contracts'
   import { toBN, BN, isBN } from 'web3-utils'
   import { BigNumber } from 'bignumber.js'
   import config from '~/config'
@@ -101,6 +111,7 @@
         canRedeem:  false,
         unlockTime: '--',
         days: 7,
+        tokenPair: ['--', '--']
       }
     },
     computed: {
@@ -195,7 +206,12 @@
       }
     },
     async mounted() {
-      await this.$onConnect();
+      try{
+        await this.$onConnect();
+      } catch {
+
+      }
+      
       let account = this.$store.state.connectedAccount;
       this.lockPool = new LockPool(config.lockPool, config.lockToken);
       this.lockToken = new Erc20(config.lockToken.address, config.lockToken.symbol, config.lockToken.decimals);
@@ -203,6 +219,10 @@
       let cardTotal = await this.cowHero.totalSupply();
       let lockAmount = this.lockAmount = await this.lockPool.lockAmount();
       this.days = await this.lockPool.lockPeriod();
+
+
+      let lp = new Pair();
+      this.tokenPair = await lp.estimateBNBAndMILK();
 
       if(account) {
         let balance = await this.lockToken.balanceOf(account);
@@ -220,7 +240,9 @@
         this.canRedeem = canRedeem;
         this.unlockTime = new Date(unlockTime * 1000)
       }
+
       setInterval(this.update, 3 * 1000)
+      
     }
   }
 </script>
@@ -269,5 +291,12 @@
   }
   .tx-status {
     text-transform: capitalize;
+  }
+  .amount {
+    margin-bottom: 2rem;
+  }
+  .amount .calc{
+    font-size: 0.95rem;
+    color: #555;
   }
 </style>

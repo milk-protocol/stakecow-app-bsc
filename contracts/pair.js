@@ -17,6 +17,18 @@ export class Pair {
 		let reserves = await this.contract.methods.getReserves().call();
 		return reserves[1] / reserves[0]
 	}
+
+	async totalSupply() {
+		return await this.contract.methods.totalSupply().call();
+	}
+
+	async estimateBNBAndMILK() {
+		let reserves = await this.contract.methods.getReserves().call();
+		let totalSupply = await this.totalSupply();
+		let x = BigNumber(30).times(reserves[0]).div(totalSupply).toFixed(2);
+		let y = BigNumber(30).times(reserves[1]).div(totalSupply).toFixed(2);
+		return [x, y]
+	}
 }
 
 export default Pair;
