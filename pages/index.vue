@@ -80,11 +80,11 @@
       
     },
     async mounted() {
-      try{
-        await this.$onConnect();
-      } catch {
+      // try{
+      //   await this.$onConnect();
+      // } catch {
 
-      }
+      // }
       let oracle = new Oracle()
       let pair = new Pair()
       let promises = [ oracle.getPriceOfBNBUSDT(), pair.getPrice(), oracle.getPriceOfDOTBNB() ];

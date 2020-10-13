@@ -175,12 +175,6 @@ export default {
         this.getWbnbBalance().then(data => {
             this.wbnb_balance = data
         })
-    },
-    async mounted() {
-      try{
-        await this.$onConnect();
-      } catch {
-      }
     }
 }
 </script>

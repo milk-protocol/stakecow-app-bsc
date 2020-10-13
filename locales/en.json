@@ -17,7 +17,8 @@
         "protocol-desc": "MILK Protocol is an experimental DeFi degens on Binance Smart Chain.Use at your own risk.",
         "coming-soon": "Coming soon",
         "select": "Select",
-        "card-desc": "Likes {symbol}"
+        "card-desc": "Likes {symbol}",
+        "unlockWallet": "Please unlock your wallet first and refresh the page."
     },
     "airdrop": {
         "airdrop-plan": "Airdrop Plan",

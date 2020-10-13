@@ -334,10 +334,6 @@
       }
     },
     async mounted() {
-      try{
-        await this.$onConnect();
-      }catch{
-      }
       let cow = new HybirdCow(this.cow.address, this.cow.stakeToken, this.cow.yieldToken);
       let stakeToken = new BNB();
       let yieldToken = new Erc20(this.cow.yieldToken.address);

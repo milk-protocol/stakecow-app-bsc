@@ -17,7 +17,8 @@
         "protocol-desc": "MILK协议是币安智能链上的实验性DeFi程序，请自行承担使用风险",
         "coming-soon": "即将到来",
         "select": "选择",
-        "card-desc": "喜欢 {symbol}"
+        "card-desc": "喜欢 {symbol}",
+        "unlockWallet": "请先解锁你的钱包并刷新页面。"
     },
     "airdrop": {
         "airdrop-plan": "空投计划",

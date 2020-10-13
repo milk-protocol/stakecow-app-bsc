@@ -17,40 +17,24 @@ export default ({ store }, inject) => {
                           store.commit('updateChainId', parseInt(chainId, 16));
                         })
                     }
-                    window.ethereum.request({ method: "eth_accounts" }).then(accounts => {
+                    window.ethereum.request({ method: "eth_requestAccounts" }).then(accounts => {
                       store.commit('updateConnectedAccount', accounts[0]);
                       let chainId = parseInt(window.ethereum.chainId, 16);
                       store.commit('updateChainId', chainId);
                       clearInterval(timer)
                       resolve()
+                    }).catch(err => {
+                        clearInterval(timer)
+                        reject(err)
                     });
-                    
-                    // if(!window.web3.eth.defaultAccount) {
-                    //    window.ethereum.enable().then(accounts => {
-                    //        store.commit('updateConnectedAccount', accounts[0]);
-                    //        let chainId = window.web3.toBigNumber(window.ethereum.chainId).toNumber();
-                    //        store.commit('updateChainId', chainId);
-                    //        store.commit('checkWallet', window.ethereum.isMathWallet);
-                    //        if(/MathWallet/i.test(window.navigator.userAgent)){
-                    //           store.commit('checkWallet', window.ethereum.isMathWallet);
-                    //        }
-                    //    });
-                    // }
-                    // store.commit('updateConnectedAccount', window.web3.eth.defaultAccount);
-                    // let chainId = window.web3.toBigNumber(window.ethereum.chainId).toNumber();
-                    // store.commit('updateChainId', chainId);
-                    // store.commit('checkWallet', window.ethereum.isMathWallet);
-                    // if(/MathWallet/i.test(window.navigator.userAgent)){
-                    //   store.commit('checkWallet', window.ethereum.isMathWallet);
-                    // }
                 } else{
                     count += 1;
                     if(count > 20){
                         clearInterval(timer);
-                        reject()
+                        reject("timeout")
                     }
                 }
-            }, 10);
+            }, 50);
         });
     })
 }

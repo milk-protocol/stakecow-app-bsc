@@ -206,11 +206,6 @@
       }
     },
     async mounted() {
-      try{
-        await this.$onConnect();
-      } catch {
-
-      }
       
       let account = this.$store.state.connectedAccount;
       this.lockPool = new LockPool(config.lockPool, config.lockToken);

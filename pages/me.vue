@@ -66,11 +66,6 @@
       }
     },
     async mounted() {
-      try{
-        await this.$onConnect();
-      } catch {
-
-      }
       
       let erc20Reader = new Erc20Reader(config.milk.address, config.milk.symbol, config.milk.decimals);
       let cowHero = new CowHero(config.cowHero);

@@ -67,6 +67,9 @@
       <b-row>
         <b-col cols="2" class="d-none d-sm-block"></b-col>
         <b-col md="8" sm="12" >
+          <div class="alert alert-warning"  v-if="walletLocked">
+            {{$t("home.unlockWallet")}}
+          </div>
           <nuxt />
         </b-col>
         <b-col cols="2" class="d-none d-sm-block"></b-col>
@@ -92,6 +95,7 @@
     data () {
       return {
         walletInstalled: true,
+        walletLocked: false,
         language: {
           en: "English",
           zh_CN: "简体中文"
@@ -123,7 +127,13 @@
       }
     },
     async mounted() {
-      await this.$onConnect();
+      try{
+        await this.$onConnect();
+      } catch(err) {
+        if(err.toString() == "Error: User rejected the signature request") {
+          this.walletLocked = true
+        }
+      }
     }
   }
 </script>
