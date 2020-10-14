@@ -206,7 +206,10 @@
       }
     },
     async mounted() {
-      
+      try{
+        await this.$onConnect();
+      } catch(err) {
+      }
       let account = this.$store.state.connectedAccount;
       this.lockPool = new LockPool(config.lockPool, config.lockToken);
       this.lockToken = new Erc20(config.lockToken.address, config.lockToken.symbol, config.lockToken.decimals);

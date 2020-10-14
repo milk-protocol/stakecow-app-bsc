@@ -334,11 +334,14 @@
       }
     },
     async mounted() {
+      try{
+        await this.$onConnect();
+      } catch(err) {
+      }
       let cow = new HybirdCow(this.cow.address, this.cow.stakeToken, this.cow.yieldToken);
       let stakeToken = new BNB();
       let yieldToken = new Erc20(this.cow.yieldToken.address);
       this.cowHero = new CowHero(config.cowHero);
-
       if(this.cow.initialized) {
         if(this.$store.state.connectedAccount) {
           this.stakeWalletBalance = await stakeToken.balanceOf(this.$store.state.connectedAccount);
@@ -346,6 +349,8 @@
           this.rewards = await cow.earned(this.$store.state.connectedAccount);
 
           this.isApprovedForAll = await this.cowHero.isApprovedForAll(this.$store.state.connectedAccount, this.cow.address)
+
+          
 
           let walletAddress = await cow.getWallet(this.$store.state.connectedAccount);
           if(walletAddress != ZERO_ADDR) {
