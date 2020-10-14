@@ -7,7 +7,7 @@ const ERC20_ABI = require('./abis/erc20.json');
 
 export class Erc20 {
 	constructor(address, symbol, decimals) {
-		this.web3 = new Web3(window.ethereum);
+		this.web3 = new Web3(window.detectProvider);
 		this.web3Reader = new Web3(new Web3.providers.HttpProvider(config.web3Provider));
 		this.address = address;
 		this.contract = new this.web3.eth.Contract(ERC20_ABI, address)
@@ -39,7 +39,7 @@ export class Erc20 {
 	}
 
 	async approveMax(sender, spender, callback) {
-	  var gasPrice = await web3.eth.getGasPrice();
+	  var gasPrice = this.defaultGasPrice;
 	  var tx = this.contract.methods.approve(spender, MAX_UINT256);
 	  var gasLimit = await tx.estimateGas({ value: 0, from: sender, to: this.address });
 	  return tx.send({

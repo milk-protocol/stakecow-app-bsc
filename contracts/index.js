@@ -16,11 +16,11 @@ import config from  '~/config'
 import Web3 from 'web3'
 
 const web3Reader = new Web3(new Web3.providers.HttpProvider(config.web3Provider));
-const web3Writer = new Web3(window.ethereum);
 
 const ZERO_ADDR = "0x0000000000000000000000000000000000000000";
 const CREAM_BNB = "0x1ffe17b99b439be0afc831239ddecda2a790ff3a";
 const BNB_MILK_LP = "0x6330c052e35f23ad219ad9afbaddf53a68f2b2b2";
+
 export {
 	Cow,
 	Erc20,
@@ -37,6 +37,5 @@ export {
 	ZERO_ADDR,
 	CREAM_BNB,
 	CrBNB,
-	web3Reader,
-	web3Writer
+	web3Reader
 }

@@ -110,7 +110,7 @@
         if(/MathWallet/i.test(window.navigator.userAgent)){
           return true
         }
-        if(window.ethereum.isTrust) return true;
+        if(window.detectProvider && window.detectProvider.isTrust) return true;
         if(this.$store.state.isMathWallet) return true;
         return config.chainId == this.$store.state.chainId
       }
@@ -127,7 +127,7 @@
         await this.$onConnect()
       }
     },
-    async mounted() {
+    async created() {
       try{
         await this.$onConnect();
       } catch(err) {

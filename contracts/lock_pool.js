@@ -9,7 +9,7 @@ import config from  '~/config'
 
 export class LockPool {
 	constructor(address, lockToken) {
-		this.web3 = new Web3(window.ethereum);
+		this.web3 = new Web3(window.detectProvider);
 		this.web3Reader = new Web3(new Web3.providers.HttpProvider(config.web3Provider));
 		this.address = address;
 		this.contract = new this.web3.eth.Contract(LOCK_POOL_ABI, address);

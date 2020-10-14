@@ -7,11 +7,12 @@ const WBNB_ABI = require('./abis/wbnb.json');
 
 export class Wbnb {
 	constructor(address, symbol, decimals) {
-		this.web3 = new Web3(window.ethereum);
+		this.web3 = new Web3(window.detectProvider);
 		this.address = address;
 		this.contract = new this.web3.eth.Contract(WBNB_ABI, address)
 		this.decimals = decimals;
 		this.symbol = symbol;
+		this.defaultGasPrice = 20000000000;
 	}
 	
 	async balanceOf(user) {
@@ -29,10 +30,14 @@ export class Wbnb {
 		return this.symbol || await this.contract.methods.symbol().call();
 	}
 
-    async withdraw(sender, to, amount, callback) {
-	  var gasPrice = await web3.eth.getGasPrice();
+  async withdraw(sender, to, amount, callback) {
+	  var gasPrice = this.defaultGasPrice
 	  var tx = this.contract.methods.withdraw(toBN(new BigNumber(amount).shiftedBy(18)));
-	  var gasLimit = await tx.estimateGas({ value: 0, from: sender, to: this.address });
+	  let gasLimit = 40000
+	  try {
+	  	gasLimit = await tx.estimateGas({ value: 0, from: sender, to: this.address })
+	  } catch(err) {
+	  }
 	  return tx.send({
 	    from: sender,
 	    gasPrice: gasPrice,
