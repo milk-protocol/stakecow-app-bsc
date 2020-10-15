@@ -68,7 +68,7 @@
         <b-col cols="2" class="d-none d-sm-block"></b-col>
         <b-col md="8" sm="12" >
           <div class="alert alert-warning"  v-if="walletLocked">
-            {{$t("home.unlockWallet")}}
+            <b-icon-exclamation-triangle-fill></b-icon-exclamation-triangle-fill> {{$t("home.unlockWallet")}}
           </div>
           <nuxt />
         </b-col>

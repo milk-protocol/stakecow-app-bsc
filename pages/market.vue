@@ -45,7 +45,7 @@
 </template>
 <script>
 import { BigNumber } from 'bignumber.js'
-import { Cow, Erc20, Wbnb, BNB, web3Reader, web3Writer } from '~/contracts'
+import { Cow, Erc20, Wbnb, BNB, web3Reader } from '~/contracts'
 import { toBN } from 'web3-utils'
 import utils from '~/mixins/utils'
 

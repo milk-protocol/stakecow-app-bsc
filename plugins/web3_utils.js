@@ -2,7 +2,7 @@
 export default ({ store }, inject) => {
   inject('onConnect', async () => {
 
-    function setupProvider(provider, callback) {
+    function setupProvider(provider) {
       if(provider.on) {
         provider.on('accountsChanged', function (accounts) {
           store.commit('updateConnectedAccount', accounts[0]);
@@ -13,29 +13,26 @@ export default ({ store }, inject) => {
           store.commit('updateChainId', parseInt(chainId, 16));
         });
       }
-      provider.request({ method: "eth_requestAccounts" }).then(accounts => {
-        store.commit('updateConnectedAccount', accounts[0]);
-        let chainId = parseInt(provider.chainId, 16);
-        store.commit('updateChainId', chainId);
-      }).catch(e => {
-        console.error(e)
-      });
     }
-
-
     return new Promise((resolve, reject) => {
         let count = 0;
         let timer = setInterval(async () => {
-          if(window.ethereum) {
-            window.detectProvider = window.ethereum;
-            setupProvider(window.ethereum);
+          if(window.ethereum || window.BinanceChain) {
             clearInterval(timer)
-            resolve()
-          } else if(window.BinanceChain) {
-            window.detectProvider = window.BinanceChain;
-            setupProvider(window.BinanceChain);
-            clearInterval(timer)
-            resolve()
+            window.detectProvider = window.ethereum || window.BinanceChain;
+            setupProvider(window.detectProvider);
+            try {
+              let accounts = await window.detectProvider.request({ method: "eth_requestAccounts" })
+              if(accounts[0] != "") {
+                store.commit('updateConnectedAccount', accounts[0]);
+                store.commit('updateChainId', parseInt(window.detectProvider.chainId, 16));
+                resolve()
+              } else {
+                reject(new Error('Error: User rejected the signature request'))
+              }
+            }catch(err) {
+              reject(err)
+            }
           } else {
             count += 1;
             if(count > 20) {
