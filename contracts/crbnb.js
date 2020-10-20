@@ -18,7 +18,7 @@ export class CrBNB {
 	
 	async APY() {
 		let rate = await this.supplyRatePerBlock();
-		return BigNumber(rate).times(this.blocksPerYear).shiftedBy(-18)
+		return (1 + parseInt(rate) / 1e18) ** 10512000 - 1
 	}
 
 	async supplyRatePerBlock() {

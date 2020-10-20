@@ -101,7 +101,7 @@
       let apy = await crBNB.APY();
       let total = await hybirdCowReader.totalSupply();
       let rate = await hybirdCowReader.rewardRate();
-      this.hybirdCowAPY = rate.times(365 * 24 * 60 * 60).div(total).plus(apy).times(100).toFixed(2);
+      this.hybirdCowAPY = rate.times(365 * 24 * 60 * 60).times(this.priceMILKBNB).div(total).plus(apy).times(100).toFixed(2);
 
       this.cows.map(async(cow) => {
         if(cow.initialized) {
@@ -112,7 +112,7 @@
           let rewards = rewardRate.times(365 * 24 * 60 * 60).div(balance)
 
           if(cow.id == 1) {
-            this.apy[1] = rewards.times(100).toFixed(2)
+            this.apy[1] = rewards.times(this.priceMILKBNB).times(100).toFixed(2)
           } else if(cow.id == 2) {
             this.apy[2] = rewards.times(this.priceMILKBNB).div(this.priceDOTBNB).times(100).toFixed(2)
           } else if(cow.id == 3) {
