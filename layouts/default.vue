@@ -15,12 +15,18 @@
               <router-link to="/">
                 {{$t("navbar.home")}}
               </router-link>
-            </b-nav-item> 
+            </b-nav-item>
             <b-nav-item>
+              <router-link to="/scBNB">
+                scBNB
+              </router-link>
+            </b-nav-item>
+
+            <!-- <b-nav-item>
               <router-link to="/market">
                 {{$t("navbar.market")}}
               </router-link>
-            </b-nav-item>
+            </b-nav-item> -->
             
             <li class="nav-item">
               <a href="https://swap.stakecow.com/#/swap?inputCurrency=BNB&outputCurrency=0x8e9f5173e16ff93f81579d73a7f9723324d6b6af" class="nav-link">

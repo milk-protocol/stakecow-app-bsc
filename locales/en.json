@@ -12,7 +12,7 @@
         "nft": "Cow NFT"
     },
     "home": {
-        "note": "The Contract is no audited but open source, Please use at your own risk.",
+        "note": "The Contract is not audited but open source, Please use at your own risk.",
         "protocol-name": "🥛 MILK Protocol",
         "protocol-desc": "MILK Protocol is an experimental DeFi degens on Binance Smart Chain.Use at your own risk.",
         "coming-soon": "Coming soon",
